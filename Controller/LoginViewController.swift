@@ -7,13 +7,18 @@
 //
 
 import UIKit
+import FirebaseAuth
 
 class LoginViewController: UIViewController {
     @IBOutlet weak var emailTextField: UITextField!
     
     @IBOutlet weak var passwordtextField: UITextField!
-    @IBOutlet weak var loginButton: UIButton!
-    @IBOutlet weak var signUpButton: UIButton!
+   
+    @IBOutlet weak var topButton: UIButton!
+    @IBOutlet weak var lowerButton: UIButton!
+    
+    var loginIsActive: Bool = true
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -26,9 +31,65 @@ class LoginViewController: UIViewController {
     }
     
     @IBAction func upperButtonPressed(_ sender: UIButton) {
+        if loginIsActive {
+            if let email = emailTextField.text {
+                if let password = passwordtextField.text {
+                    Auth.auth().signIn(withEmail: email, password: password, completion: { (user, error) in
+                        if error != nil {
+                            if let errorCode = error?.localizedDescription {
+                                self.showError(errorText: errorCode)
+                            }
+                        }
+                        else {
+                            // User sign in was successfully
+                            self.performSegue(withIdentifier: "AuthToStation", sender: nil)
+                        }
+                    })
+                }
+            }
+            else {
+                if let email = emailTextField.text {
+                    if let password = passwordtextField.text {
+                        Auth.auth().createUser(withEmail: email, password: password, completion: { (user, error) in
+                            if error != nil {
+                                if let errorCode = error?.localizedDescription {
+                                    self.showError(errorText: errorCode)
+                                }
+                            }
+                            else {
+                                self.performSegue(withIdentifier: "AuthToStation", sender: nil)
+                            }
+                        })
+                    }
+                }
+            }
+        }
     }
     
     @IBAction func lowerButtonPressed(_ sender: UIButton) {
+        if loginIsActive {
+            topButton.setTitle("Sign up", for: .normal)
+            lowerButton.setTitle("Login", for: .normal)
+            loginIsActive = false
+        }
+        else {
+            topButton.setTitle("Login", for: .normal)
+            lowerButton.setTitle("Sign up", for: .normal)
+            loginIsActive = true
+        }
+    }
+    
+    private func showError(errorText :String) {
+        let alervc = UIAlertController(title: "Error", message: errorText, preferredStyle: .alert)
+        
+        
+        let okAction = UIAlertAction(title: "Ok", style: .default, handler: { (action) in
+            alervc.dismiss(animated: true, completion: nil)
+        })
+        
+       
+        alervc.addAction(okAction)
+        present(alervc, animated: true, completion: nil)
     }
     /*
     // MARK: - Navigation
