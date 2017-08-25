@@ -96,14 +96,14 @@
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <connections>
-                        <segue destination="x0T-SE-tBa" kind="relationship" relationship="rootViewController" id="c2F-X3-3uy"/>
+                        <segue destination="jVg-dd-JNu" kind="relationship" relationship="rootViewController" id="kLO-1A-F7X"/>
                     </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="zrt-pB-Ntc" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="854" y="170"/>
         </scene>
-        <!--Add Station Table View Controller-->
+        <!--Add Station-->
         <scene sceneID="wT1-fj-2jj">
             <objects>
                 <tableViewController id="jVg-dd-JNu" customClass="AddStationTableViewController" customModule="GrawApp" customModuleProvider="target" sceneMemberID="viewController">
@@ -117,12 +117,28 @@
                             <textInputTraits key="textInputTraits"/>
                         </searchBar>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="BG1-ua-QLr">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="cellId" textLabel="Jga-5e-ovs" detailTextLabel="UaA-Ti-NQ2" style="IBUITableViewCellStyleSubtitle" id="BG1-ua-QLr">
                                 <rect key="frame" x="0.0" y="84" width="375" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="BG1-ua-QLr" id="z1Y-E1-EaI">
-                                    <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="342" height="43.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Jga-5e-ovs">
+                                            <rect key="frame" x="16" y="5" width="33.5" height="20.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Subtitle" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="UaA-Ti-NQ2">
+                                            <rect key="frame" x="16" y="25.5" width="44" height="14.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
                                 </tableViewCellContentView>
                             </tableViewCell>
                         </prototypes>
@@ -131,6 +147,13 @@
                             <outlet property="delegate" destination="jVg-dd-JNu" id="KyS-md-qdu"/>
                         </connections>
                     </tableView>
+                    <navigationItem key="navigationItem" title="Add Station" id="UeN-Ss-NEI">
+                        <barButtonItem key="leftBarButtonItem" title="Logout" id="79Z-1k-Apm">
+                            <connections>
+                                <action selector="logoutTapped:" destination="jVg-dd-JNu" id="yFh-Ab-5ZN"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <outlet property="searchBar" destination="edJ-9X-VOJ" id="qDk-cC-pKT"/>
                     </connections>
@@ -148,10 +171,10 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="Usz-VY-27e">
-                                <rect key="frame" x="0.0" y="64" width="375" height="267"/>
+                                <rect key="frame" x="0.0" y="20" width="375" height="267"/>
                             </mapView>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="arx-X8-oAc">
-                                <rect key="frame" x="0.0" y="338.5" width="375" height="328.5"/>
+                                <rect key="frame" x="0.0" y="294.5" width="375" height="372.5"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <searchBar key="tableHeaderView" contentMode="redraw" id="y99-xa-t1t">
                                     <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>

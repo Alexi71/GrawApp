@@ -15,6 +15,12 @@ class Station {
     var longitude : String = ""
     var latitude : String = ""
     var altitude :String = ""
+    var key :String = ""
     
     
+}
+
+class UserStation {
+    var key : String = ""
+    var isActive : Bool = false
 }

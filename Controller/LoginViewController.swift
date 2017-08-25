@@ -8,6 +8,7 @@
 
 import UIKit
 import FirebaseAuth
+import FirebaseDatabase
 
 class LoginViewController: UIViewController {
     @IBOutlet weak var emailTextField: UITextField!
@@ -16,6 +17,8 @@ class LoginViewController: UIViewController {
    
     @IBOutlet weak var topButton: UIButton!
     @IBOutlet weak var lowerButton: UIButton!
+    
+    var activeStation : Station = Station()
     
     var loginIsActive: Bool = true
     
@@ -42,6 +45,7 @@ class LoginViewController: UIViewController {
                         }
                         else {
                             // User sign in was successfully
+                            self.GetActiveStation()
                             self.performSegue(withIdentifier: "AuthToStation", sender: nil)
                         }
                     })
@@ -63,6 +67,36 @@ class LoginViewController: UIViewController {
                     }
                 }
             }
+        }
+    }
+    
+    func GetActiveStation() {
+        
+        if let user = Auth.auth().currentUser?.uid {
+            
+            let searchRef = Database.database().reference().child("userstations").child(user)
+                .child("stations").queryOrdered(byChild: "isActive").queryEqual(toValue: "true")
+     
+        
+        // search the username
+        searchRef.observeSingleEvent(of: .value, with: { (snapshot) in
+            
+            if let firebaseDic = snapshot.value as? [String: AnyObject] {
+                for child in firebaseDic{
+                    let key = child.value["staionKey"] as! String
+                    print("\(key)")
+                }
+            }
+            
+           
+            guard snapshot.value is NSNull else {
+                
+                // yes we got the user
+                let station = snapshot.value as! NSDictionary
+                print("\(user) is exists")
+                return
+            }
+            })
         }
     }
     

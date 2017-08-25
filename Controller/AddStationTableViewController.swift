@@ -7,18 +7,28 @@
 //
 
 import UIKit
+import FirebaseDatabase
+import FirebaseAuth
 
-class AddStationTableViewController: UITableViewController {
+class AddStationTableViewController: UITableViewController,UISearchBarDelegate {
+    
+    var stationItems:[Station] = []
+    var filteredItems: [Station] = []
+    var userStations : [UserStation] = []
+    var isFiltered = false
 
     @IBOutlet weak var searchBar: UISearchBar!
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        searchBar.delegate = self
+        searchBar.returnKeyType = UIReturnKeyType.done
+        ReadUserStations()
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
 
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         // self.navigationItem.rightBarButtonItem = self.editButtonItem
+        InitializeDatabase()
     }
 
     override func didReceiveMemoryWarning() {
@@ -30,23 +40,72 @@ class AddStationTableViewController: UITableViewController {
 
     override func numberOfSections(in tableView: UITableView) -> Int {
         // #warning Incomplete implementation, return the number of sections
-        return 0
+        return 1
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return 0
+        if isFiltered {
+            return filteredItems.count
+        }
+        else {
+            return stationItems.count
+        }
+        
     }
 
-    /*
+    
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "reuseIdentifier", for: indexPath)
+        let cell = tableView.dequeueReusableCell(withIdentifier: "cellId", for: indexPath)
 
         // Configure the cell...
-
+        var item :Station = Station()
+        if isFiltered {
+            item = filteredItems[indexPath.row]
+        }
+        else {
+            item = stationItems[indexPath.row]
+        }
+        cell.textLabel?.text = item.name
+        cell.detailTextLabel?.text = item.id
         return cell
     }
-    */
+    
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        var item :Station = Station()
+        if isFiltered {
+            item = filteredItems[indexPath.row]
+        }
+        else {
+            item = stationItems[indexPath.row]
+        }
+        if let user = Auth.auth().currentUser?.uid {
+            
+            let searchRef = Database.database().reference().child("userstations").child(user)
+                .child("stations")
+                .queryOrdered(byChild: "staionKey").queryEqual(toValue: item.key)
+            
+            searchRef.observeSingleEvent(of: .value, with: { (snapshot) in
+                guard snapshot.value is NSNull else {
+                    
+                    // yes we got the user
+                    let user = snapshot.value as! NSDictionary
+                    //print("\(user) is exists")
+                    return
+                }
+
+            })
+            print ("Stop")
+            /*let userEntry : [String: String] = ["staionKey" : item.key,"isActive":"true"]
+            let ref = Database.database().reference()
+            ref.child("userstations").child(user).child("stations").childByAutoId().setValue(userEntry, withCompletionBlock: { (error, dbref) in
+                if error == nil {
+                    print ("user station added successfully")
+                }
+            })*/
+        }
+        
+    }
 
     /*
     // Override to support conditional editing of the table view.
@@ -92,5 +151,150 @@ class AddStationTableViewController: UITableViewController {
         // Pass the selected object to the new view controller.
     }
     */
+    
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        if searchBar.text == "" || searchBar.text == nil {
+            isFiltered = false
+            view.endEditing(true)
+            
+        }
+        else {
+            isFiltered = true
+            filteredItems = stationItems.filter({ (sta) -> Bool in
+                if (sta.name == searchText || sta.name.range(of: searchText) != nil) ||
+                    (sta.id == searchText || sta.id.range(of: searchText) != nil){
+                    return true
+                }
+                else {
+                    return false
+                }
+            })
+        }
+        tableView.reloadData()
+    }
+    
+    @IBAction func logoutTapped(_ sender: UIBarButtonItem) {
+        dismiss(animated: true, completion: nil)
+    }
+    //MARK: - Database
+    
+    func ReadUserStations() {
+        if let user = Auth.auth().currentUser?.uid {
+            
+            let searchRef = Database.database().reference().child("userstations").child(user)
+                .child("stations")
+            
+            
+            searchRef.observe(.childAdded,  with: { (snapshot) in
+                
+                if let snap = snapshot.value as? NSDictionary
+                {
+                    let us = UserStation()
+                    if let id = snap["staionKey"] as?  String {
+                        us.key = id
+                    }
+                    if let isActive = snap["isActive"] as?  String {
+                        us.isActive = Bool(isActive)!
+                    }
+                    self.userStations.append(us)
+                }
+                /*guard snapshot.value is NSNull else {
+                 
+                 // yes we got the user
+                 //let user = snapshot.value as! NSDictionary
+                 //print("\(user) is exists")
+                 result = true
+                 return
+                 }*/
+                
+            })
+        }
+    }
+    
+    func InitializeDatabase()  {
+        Database.database().reference().child("station").observe(.childAdded) { (snapshot) in
+            let key = snapshot.key
+            
+            if let stations = snapshot.value as? NSDictionary {
+                let item :Station = Station()
+                item.key = key
+                
+                if let id = stations["Id"] as?  String {
+                    item.id = id
+                }
+                if let name = stations["Name"] as? String {
+                    item.name = name
+                }
+                if let city = stations["City"] as? String {
+                    item.city = city
+                }
+                if let country = stations["Country"] as? String {
+                    item.country = country
+                }
+                
+                if let latitude = stations["Latitude"] as? String {
+                    item.latitude = latitude
+                }
+                if let longitude = stations["Longitude"] as? String {
+                    item.longitude = longitude
+                }
+                if let altitude = stations["Altitude"] as? String {
+                    item.altitude = altitude
+                }
+                
+                
+                
+                let x = self.userStations.contains(where: { (us) -> Bool in
+                    if us.key == item.key {
+                        return true
+                    }
+                    else {
+                        return false
+                    }
+                })
+               
+                if !x {
+                    self.stationItems.append(item)
+                }
+                
+                
+                
+                
+                print ("id is: \(item.id)")
+                self.tableView.reloadData()
+                
+            }
+        }
+        
+    }
+    
+    func IsStationKeyforUserExists(key :String) -> Bool {
+        var result = false
+        if let user = Auth.auth().currentUser?.uid {
+            
+            let searchRef = Database.database().reference().child("userstations").child(user)
+                .child("stations")
+                .queryOrdered(byChild: "staionKey").queryEqual(toValue: key)
+            
+            searchRef.observeSingleEvent(of: .value, with: { (snapshot) in
+                
+                if let snap = snapshot.value as? NSDictionary
+                {
+                    result = true
+                }
+                /*guard snapshot.value is NSNull else {
+                    
+                    // yes we got the user
+                    //let user = snapshot.value as! NSDictionary
+                    //print("\(user) is exists")
+                    result = true
+                    return
+                }*/
+                
+            })
+        
+        }
+        return result
+    }
 
 }
