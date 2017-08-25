@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		2371CCBD1F4ED7AE0054D698 /* StationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2371CCBC1F4ED7AE0054D698 /* StationViewController.swift */; };
 		2371CCBF1F4EE7830054D698 /* Station.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2371CCBE1F4EE7830054D698 /* Station.swift */; };
 		238E59971F4DC79900B87C3A /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 238E59961F4DC62D00B87C3A /* GoogleService-Info.plist */; };
 		7EB83F1C1F47504200568CF2 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EB83F1B1F47504200568CF2 /* AppDelegate.swift */; };
@@ -16,11 +15,12 @@
 		7EB83F261F47504200568CF2 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7EB83F251F47504200568CF2 /* Assets.xcassets */; };
 		7EB83F291F47504200568CF2 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7EB83F271F47504200568CF2 /* LaunchScreen.storyboard */; };
 		7EB83F351F475A1F00568CF2 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EB83F341F475A1F00568CF2 /* LoginViewController.swift */; };
+		7EB83F391F4FEEC000568CF2 /* StationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EB83F381F4FEEC000568CF2 /* StationViewController.swift */; };
+		7EB83F3B1F4FF2E300568CF2 /* AddStationTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EB83F3A1F4FF2E300568CF2 /* AddStationTableViewController.swift */; };
 		FA410619A09B1B7B9F46D07C /* Pods_GrawApp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9426769E4613DA376944FD4C /* Pods_GrawApp.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		2371CCBC1F4ED7AE0054D698 /* StationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = StationViewController.swift; path = "/Users/KotikA/Library/Mobile Documents/com~apple~CloudDocs/Swift/Udemy/GrawApp/Controller/StationViewController.swift"; sourceTree = "<absolute>"; };
 		2371CCBE1F4EE7830054D698 /* Station.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Station.swift; sourceTree = SOURCE_ROOT; };
 		238E59961F4DC62D00B87C3A /* GoogleService-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		639A13AABC8D738785DB2753 /* Pods-GrawApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GrawApp.release.xcconfig"; path = "Pods/Target Support Files/Pods-GrawApp/Pods-GrawApp.release.xcconfig"; sourceTree = "<group>"; };
@@ -32,6 +32,8 @@
 		7EB83F281F47504200568CF2 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		7EB83F2A1F47504200568CF2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		7EB83F341F475A1F00568CF2 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
+		7EB83F381F4FEEC000568CF2 /* StationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StationViewController.swift; sourceTree = "<group>"; };
+		7EB83F3A1F4FF2E300568CF2 /* AddStationTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddStationTableViewController.swift; sourceTree = "<group>"; };
 		9426769E4613DA376944FD4C /* Pods_GrawApp.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_GrawApp.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		D82B81AB6333AFAAD42DBC17 /* Pods-GrawApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GrawApp.debug.xcconfig"; path = "Pods/Target Support Files/Pods-GrawApp/Pods-GrawApp.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -108,9 +110,10 @@
 		7EB83F331F4753D700568CF2 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
-				2371CCBC1F4ED7AE0054D698 /* StationViewController.swift */,
+				7EB83F381F4FEEC000568CF2 /* StationViewController.swift */,
 				7EB83F1B1F47504200568CF2 /* AppDelegate.swift */,
 				7EB83F341F475A1F00568CF2 /* LoginViewController.swift */,
+				7EB83F3A1F4FF2E300568CF2 /* AddStationTableViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -249,9 +252,10 @@
 			files = (
 				7EB83F351F475A1F00568CF2 /* LoginViewController.swift in Sources */,
 				2371CCBF1F4EE7830054D698 /* Station.swift in Sources */,
+				7EB83F3B1F4FF2E300568CF2 /* AddStationTableViewController.swift in Sources */,
 				7EB83F241F47504200568CF2 /* GrawApp.xcdatamodeld in Sources */,
 				7EB83F1C1F47504200568CF2 /* AppDelegate.swift in Sources */,
-				2371CCBD1F4ED7AE0054D698 /* StationViewController.swift in Sources */,
+				7EB83F391F4FEEC000568CF2 /* StationViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
