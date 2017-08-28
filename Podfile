@@ -11,4 +11,5 @@ target 'GrawApp' do
   pod 'Firebase/Storage'
   pod 'Firebase/Database'  # Pods for GrawApp
   pod 'Alamofire'
+  pod 'SwiftyJSON'
 end

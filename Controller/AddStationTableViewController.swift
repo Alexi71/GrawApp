@@ -9,12 +9,13 @@
 import UIKit
 import FirebaseDatabase
 import FirebaseAuth
+import CoreData
 
 class AddStationTableViewController: UITableViewController,UISearchBarDelegate {
-    
-    var stationItems:[Station] = []
-    var filteredItems: [Station] = []
-    var userStations : [UserStation] = []
+    var activeStation : Station?
+    var stationItems:[StationItem] = []
+    var filteredItems: [StationItem] = []
+    //var userStations : [UserStation] = []
     var isFiltered = false
 
     @IBOutlet weak var searchBar: UISearchBar!
@@ -22,7 +23,7 @@ class AddStationTableViewController: UITableViewController,UISearchBarDelegate {
         super.viewDidLoad()
         searchBar.delegate = self
         searchBar.returnKeyType = UIReturnKeyType.done
-        ReadUserStations()
+        //ReadUserStations()
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
 
@@ -59,7 +60,7 @@ class AddStationTableViewController: UITableViewController,UISearchBarDelegate {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cellId", for: indexPath)
 
         // Configure the cell...
-        var item :Station = Station()
+        var item :StationItem = StationItem()
         if isFiltered {
             item = filteredItems[indexPath.row]
         }
@@ -72,16 +73,31 @@ class AddStationTableViewController: UITableViewController,UISearchBarDelegate {
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        var item :Station = Station()
+        var item :StationItem = StationItem()
         if isFiltered {
             item = filteredItems[indexPath.row]
         }
         else {
             item = stationItems[indexPath.row]
         }
-        if let user = Auth.auth().currentUser?.uid {
+        if let userId = Auth.auth().currentUser?.uid {
+            if let station = CoreDataHelper.getStationObject() {
+                station.id = item.id
+                station.name = item.name
+                station.city = item.city
+                station.country = item.country
+                station.latitude = item.latitude
+                station.longitude = item.longitude
+                station.altitude = item.altitude
+                station.key = item.key
+                CoreDataHelper.insertUserWithStation(userId: userId, stationItem: station)
+            }
             
-            let searchRef = Database.database().reference().child("userstations").child(user)
+            
+            //
+            
+            
+           /* let searchRef = Database.database().reference().child("userstations").child(user)
                 .child("stations")
                 .queryOrdered(byChild: "staionKey").queryEqual(toValue: item.key)
             
@@ -102,7 +118,7 @@ class AddStationTableViewController: UITableViewController,UISearchBarDelegate {
                 if error == nil {
                     print ("user station added successfully")
                 }
-            })*/
+            })*/*/
         }
         
     }
@@ -177,7 +193,7 @@ class AddStationTableViewController: UITableViewController,UISearchBarDelegate {
         dismiss(animated: true, completion: nil)
     }
     //MARK: - Database
-    
+    /*
     func ReadUserStations() {
         if let user = Auth.auth().currentUser?.uid {
             
@@ -209,14 +225,14 @@ class AddStationTableViewController: UITableViewController,UISearchBarDelegate {
                 
             })
         }
-    }
+    }*/
     
     func InitializeDatabase()  {
         Database.database().reference().child("station").observe(.childAdded) { (snapshot) in
             let key = snapshot.key
             
             if let stations = snapshot.value as? NSDictionary {
-                let item :Station = Station()
+                let item :StationItem = StationItem()
                 item.key = key
                 
                 if let id = stations["Id"] as?  String {
@@ -244,23 +260,27 @@ class AddStationTableViewController: UITableViewController,UISearchBarDelegate {
                 
                 
                 
-                let x = self.userStations.contains(where: { (us) -> Bool in
+               /* let x = self.userStations.contains(where: { (us) -> Bool in
                     if us.key == item.key {
                         return true
                     }
                     else {
                         return false
                     }
-                })
-               
-                if !x {
+                })*/
+                if let coreStation = self.activeStation {
+                    if coreStation.id != item.id {
+                       self.stationItems.append(item)
+                    }
+                }
+                else {
                     self.stationItems.append(item)
                 }
                 
                 
                 
                 
-                print ("id is: \(item.id)")
+                //print ("id is: \(item.id)")
                 self.tableView.reloadData()
                 
             }

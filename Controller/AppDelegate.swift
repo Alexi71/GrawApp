@@ -19,6 +19,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
         FirebaseApp.configure()
+        UINavigationBar.appearance().tintColor = UIColor.white
+        UINavigationBar.appearance().backgroundColor = UIColor(red: 2/255, green: 64/255, blue: 123/255, alpha: 1.0)
+        UINavigationBar.appearance().barTintColor = UIColor(red: 2/255, green: 64/255, blue: 123/255, alpha: 1.0)
+        UINavigationBar.appearance().titleTextAttributes = [NSAttributedStringKey.foregroundColor : UIColor.white]
+        UIApplication.shared.statusBarStyle = .lightContent
+        UINavigationBar.appearance().isTranslucent = false
         return true
     }
 

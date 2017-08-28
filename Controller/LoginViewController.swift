@@ -18,13 +18,13 @@ class LoginViewController: UIViewController {
     @IBOutlet weak var topButton: UIButton!
     @IBOutlet weak var lowerButton: UIButton!
     
-    var activeStation : Station = Station()
+    var activeStation : Station?
     
     var loginIsActive: Bool = true
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        //CoreDataHelper.deleteAllUsers()
         // Do any additional setup after loading the view.
     }
 
@@ -45,8 +45,14 @@ class LoginViewController: UIViewController {
                         }
                         else {
                             // User sign in was successfully
-                            self.GetActiveStation()
-                            self.performSegue(withIdentifier: "AuthToStation", sender: nil)
+                            self.activeStation = self.GetActiveStation()
+                            if self.activeStation != nil {
+                                self.performSegue(withIdentifier: "StationFlights", sender: nil)
+                            }
+                            else {
+                               self.performSegue(withIdentifier: "AuthToStation", sender: self)
+                            }
+                            
                         }
                     })
                 }
@@ -70,34 +76,14 @@ class LoginViewController: UIViewController {
         }
     }
     
-    func GetActiveStation() {
+    func GetActiveStation() -> Station? {
         
-        if let user = Auth.auth().currentUser?.uid {
+        if let userId = Auth.auth().currentUser?.uid {
             
-            let searchRef = Database.database().reference().child("userstations").child(user)
-                .child("stations").queryOrdered(byChild: "isActive").queryEqual(toValue: "true")
-     
-        
-        // search the username
-        searchRef.observeSingleEvent(of: .value, with: { (snapshot) in
-            
-            if let firebaseDic = snapshot.value as? [String: AnyObject] {
-                for child in firebaseDic{
-                    let key = child.value["staionKey"] as! String
-                    print("\(key)")
-                }
-            }
-            
-           
-            guard snapshot.value is NSNull else {
-                
-                // yes we got the user
-                let station = snapshot.value as! NSDictionary
-                print("\(user) is exists")
-                return
-            }
-            })
+           let station = CoreDataHelper.getDefaultStationFromUser(userId: userId)
+            return station
         }
+        return nil
     }
     
     @IBAction func lowerButtonPressed(_ sender: UIButton) {
@@ -125,14 +111,28 @@ class LoginViewController: UIViewController {
         alervc.addAction(okAction)
         present(alervc, animated: true, completion: nil)
     }
-    /*
+    
     // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         // Get the new view controller using segue.destinationViewController.
         // Pass the selected object to the new view controller.
+        if segue.identifier == "AuthToStation" {
+            if let destinationVc = segue.destination as? UINavigationController {
+                if let targetController = destinationVc.topViewController as? AddStationTableViewController {
+                    targetController.activeStation = self.activeStation
+                }
+            }
+        }
+        else if segue.identifier == "StationFlights" {
+            if let destinationVc = segue.destination as? UINavigationController {
+                if let targetController = destinationVc.topViewController as? StationViewController {
+                    targetController.activeStation = self.activeStation
+                }
+            }
+        }
     }
-    */
+    
 
 }

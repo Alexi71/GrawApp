@@ -8,18 +8,29 @@
 import UIKit
 import FirebaseDatabase
 import MapKit
+import Alamofire
+import SwiftyJSON
 
 
 class StationViewController:
 UIViewController,CLLocationManagerDelegate,MKMapViewDelegate,UITableViewDelegate,
 UITableViewDataSource{
 
+    @IBOutlet weak var cityLabel: UILabel!
+    @IBOutlet weak var weatherIcon: UIImageView!
+    @IBOutlet weak var temperatureLabel: UILabel!
     @IBOutlet weak var mapView: MKMapView!
     
     @IBOutlet weak var tableView: UITableView!
     var manager = CLLocationManager()
-    var stationItems : [Station] = []
+    var activeStation : Station?
+    var flights : [FlightData] = []
+    var currentCoordinates : CLLocationCoordinate2D = CLLocationCoordinate2D()
+    var zoom = 1000
     
+    let WEATHER_URL = "http://api.openweathermap.org/data/2.5/weather"
+    let APP_ID = "e72ca729af228beabd5d20e3b7749713"
+    let weatherDataModel = WeatherDataModel()
     
     
     override func viewDidLoad() {
@@ -36,15 +47,23 @@ UITableViewDataSource{
         else {
               manager.requestWhenInUseAuthorization();
         }
-        
-        
-
-        InitializeDatabase()
+        self.tableView.backgroundColor = UIColor.clear
+        tableView.tableFooterView = UIView()
+        tableView.tableFooterView?.backgroundColor = UIColor(red: 2/255, green: 64/255, blue: 123/255, alpha: 1.0)
+       
+        initializeDatabase()
+        if let station = activeStation {
+            self.title = station.name + ", " + station.id
+        }
         
         // Do any additional setup after loading the view.
     }
     @IBAction func logoutTapped(_ sender: UIBarButtonItem) {
         dismiss(animated: true, completion: nil)
+    }
+    
+    func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+        cell.backgroundColor = UIColor.clear
     }
     
     override func didReceiveMemoryWarning() {
@@ -71,57 +90,75 @@ UITableViewDataSource{
     }
     
     //MARK: - Database
-    func InitializeDatabase()  {
-        Database.database().reference().child("station").observe(.childAdded) { (snapshot) in
-            if let stations = snapshot.value as? NSDictionary {
-                let item :Station = Station()
-                if let id = stations["Id"] as?  String {
-                    item.id = id
+    func initializeDatabase()  {
+        if let key = activeStation?.key {
+      Database.database().reference().child("station").child(key).child("flights").observe(.childAdded) { (snapshot) in
+        
+                if let flights = snapshot.value as? NSDictionary {
+                    let item :FlightData = FlightData()
+                    if let date = flights["Date"] as?  String {
+                        item.date = date
+                    }
+                    if let time = flights["Time"] as?  String {
+                        item.time = time
+                    }
+                    
+                    if let fileName = flights["FileName"] as?  String {
+                        item.fileName = fileName
+                    }
+                    
+                    if let url = flights["Url"] as?  String {
+                        item.url = url
+                    }
+                    self.flights.append(item)
+                    
+                    self.tableView.reloadData()
+                    self.addAnnotationOfStation()
                 }
-                if let name = stations["Name"] as? String {
-                    item.name = name
-                }
-                if let city = stations["City"] as? String {
-                    item.city = city
-                }
-                if let country = stations["Country"] as? String {
-                    item.country = country
-                }
-                
-                if let latitude = stations["Latitude"] as? String {
-                    item.latitude = latitude
-                }
-                if let longitude = stations["Longitude"] as? String {
-                    item.longitude = longitude
-                }
-                if let altitude = stations["Altitude"] as? String {
-                    item.altitude = altitude
-                }
-                
-                self.stationItems.append(item)
-                
-                print ("id is: \(item.id)")
-                self.tableView.reloadData()
-                
+        
             }
         }
         
     }
     
+    func addAnnotationOfStation() {
+        if let item = activeStation {
+            let anno = MKPointAnnotation()
+            if let lat = Double(item.latitude) {
+                anno.coordinate.latitude = lat
+            }
+            if let long = Double(item.longitude) {
+                anno.coordinate.longitude = long
+            }
+            mapView.addAnnotation(anno)
+            let region = MKCoordinateRegionMakeWithDistance(anno.coordinate, 1000, 1000)
+            mapView.setRegion(region, animated: false)
+            currentCoordinates = anno.coordinate
+            let longitude = String(currentCoordinates.longitude)
+            let latitude = String(currentCoordinates.latitude)
+            let prams :[String:String] = ["lat":latitude,"lon":longitude,"appid":APP_ID]
+            getWeatherData(url:WEATHER_URL, parameter:prams)
+        }
+    }
+    
+    
     // MARK: - TableView
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return stationItems.count
+        return flights.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cellId", for: indexPath)
-        cell.textLabel?.text = stationItems[indexPath.row].name
+        cell.textLabel?.text = flights[indexPath.row].date + " " + flights[indexPath.row].time
+        UITableViewCell.appearance().textLabel?.textColor = UIColor(red: 2/255, green: 64/255, blue: 123/255, alpha: 1.0)
+        cell.textLabel?.backgroundColor = UIColor(red: 2/255, green: 64/255, blue: 123/255, alpha: 1.0)
+        UITableViewCell.appearance().backgroundColor = UIColor.clear
         return cell
         
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let item = stationItems[indexPath.row]
+        /*let item = stationItems[indexPath.row]
         let anno = MKPointAnnotation()
         if let lat = Double(item.latitude) {
             anno.coordinate.latitude = lat
@@ -131,7 +168,7 @@ UITableViewDataSource{
         }
         mapView.addAnnotation(anno)
         let region = MKCoordinateRegionMakeWithDistance(anno.coordinate, 1000, 1000)
-        mapView.setRegion(region, animated: false)
+        mapView.setRegion(region, animated: false) */
     }
     
     func tableView(_ tableView: UITableView, accessoryButtonTappedForRowWith indexPath: IndexPath) {
@@ -147,5 +184,66 @@ UITableViewDataSource{
         // Pass the selected object to the new view controller.
     }
     */
+    
+    //MARK: - Networking
+    /***************************************************************/
+    
+    //Write the getWeatherData method here:
+    func getWeatherData(url:String, parameter:[String:String]){
+        Alamofire.request(url, method: .get, parameters: parameter).responseJSON{
+            response in
+            if response.result.isSuccess{
+                print ("Success. Got the weather data")
+                let weatherJSON:JSON = JSON(response.result.value!)
+                print (weatherJSON)
+                self.updateWeatherData(json: weatherJSON)
+            }
+            else {
+                print ("Error \(response.result.error ?? "Connection issue" as! Error)")
+                self.cityLabel.text = "Connection issue"
+            }
+        }
+        
+    }
+    
+    
+    
+    
+    
+    
+    
+    //MARK: - JSON Parsing
+    /***************************************************************/
+    
+    
+    //Write the updateWeatherData method here:
+    func updateWeatherData (json:JSON){
+        if let tempResult = json["main"]["temp"].double {
+            weatherDataModel.temperature = Int(tempResult - 273.15)
+            weatherDataModel.city = json["name"].stringValue
+            weatherDataModel.condition = json["weather"][0]["id"].intValue
+            weatherDataModel.weatherIconName = weatherDataModel.updateWeatherIcon(condition: weatherDataModel.condition)
+            updataUIWithWeatherData()
+        }
+        else
+        {
+            cityLabel.text = "Weather data are not available"
+        }
+    }
+    
+    
+    
+    
+    //MARK: - UI Updates
+    /***************************************************************/
+    
+    
+    //Write the updateUIWithWeatherData method here:
+    
+    func updataUIWithWeatherData() {
+        cityLabel.text = weatherDataModel.city
+        temperatureLabel.text = "\(weatherDataModel.temperature)°"
+        weatherIcon.image = UIImage(named: weatherDataModel.weatherIconName)
+    }
 
 }

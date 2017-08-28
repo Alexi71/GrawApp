@@ -7,8 +7,15 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		23304DDE1F5444D000C46B62 /* WeatherDataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23304DDD1F5444D000C46B62 /* WeatherDataModel.swift */; };
 		2371CCBF1F4EE7830054D698 /* Station.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2371CCBE1F4EE7830054D698 /* Station.swift */; };
 		238E59971F4DC79900B87C3A /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 238E59961F4DC62D00B87C3A /* GoogleService-Info.plist */; };
+		239FDB8B1F53F61300AFF736 /* User+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 239FDB871F53F61200AFF736 /* User+CoreDataClass.swift */; };
+		239FDB8C1F53F61300AFF736 /* User+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 239FDB881F53F61300AFF736 /* User+CoreDataProperties.swift */; };
+		239FDB8D1F53F61300AFF736 /* Station+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 239FDB891F53F61300AFF736 /* Station+CoreDataClass.swift */; };
+		239FDB8E1F53F61300AFF736 /* Station+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 239FDB8A1F53F61300AFF736 /* Station+CoreDataProperties.swift */; };
+		239FDB901F53F63700AFF736 /* CoreDataHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 239FDB8F1F53F63700AFF736 /* CoreDataHelper.swift */; };
+		239FDB921F541C7200AFF736 /* FlightData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 239FDB911F541C7200AFF736 /* FlightData.swift */; };
 		7EB83F1C1F47504200568CF2 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EB83F1B1F47504200568CF2 /* AppDelegate.swift */; };
 		7EB83F211F47504200568CF2 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7EB83F1F1F47504200568CF2 /* Main.storyboard */; };
 		7EB83F241F47504200568CF2 /* GrawApp.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 7EB83F221F47504200568CF2 /* GrawApp.xcdatamodeld */; };
@@ -21,8 +28,15 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		23304DDD1F5444D000C46B62 /* WeatherDataModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherDataModel.swift; sourceTree = "<group>"; };
 		2371CCBE1F4EE7830054D698 /* Station.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Station.swift; sourceTree = SOURCE_ROOT; };
 		238E59961F4DC62D00B87C3A /* GoogleService-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		239FDB871F53F61200AFF736 /* User+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "User+CoreDataClass.swift"; path = "/Users/KotikA/Library/Mobile Documents/com~apple~CloudDocs/Swift/Udemy/GrawApp/Model/User+CoreDataClass.swift"; sourceTree = "<absolute>"; };
+		239FDB881F53F61300AFF736 /* User+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "User+CoreDataProperties.swift"; path = "/Users/KotikA/Library/Mobile Documents/com~apple~CloudDocs/Swift/Udemy/GrawApp/Model/User+CoreDataProperties.swift"; sourceTree = "<absolute>"; };
+		239FDB891F53F61300AFF736 /* Station+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "Station+CoreDataClass.swift"; path = "/Users/KotikA/Library/Mobile Documents/com~apple~CloudDocs/Swift/Udemy/GrawApp/Model/Station+CoreDataClass.swift"; sourceTree = "<absolute>"; };
+		239FDB8A1F53F61300AFF736 /* Station+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "Station+CoreDataProperties.swift"; path = "/Users/KotikA/Library/Mobile Documents/com~apple~CloudDocs/Swift/Udemy/GrawApp/Model/Station+CoreDataProperties.swift"; sourceTree = "<absolute>"; };
+		239FDB8F1F53F63700AFF736 /* CoreDataHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataHelper.swift; sourceTree = "<group>"; };
+		239FDB911F541C7200AFF736 /* FlightData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlightData.swift; sourceTree = "<group>"; };
 		639A13AABC8D738785DB2753 /* Pods-GrawApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GrawApp.release.xcconfig"; path = "Pods/Target Support Files/Pods-GrawApp/Pods-GrawApp.release.xcconfig"; sourceTree = "<group>"; };
 		7EB83F181F47504200568CF2 /* GrawApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GrawApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		7EB83F1B1F47504200568CF2 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -93,7 +107,13 @@
 		7EB83F311F4753C900568CF2 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				23304DDD1F5444D000C46B62 /* WeatherDataModel.swift */,
+				239FDB891F53F61300AFF736 /* Station+CoreDataClass.swift */,
+				239FDB8A1F53F61300AFF736 /* Station+CoreDataProperties.swift */,
+				239FDB871F53F61200AFF736 /* User+CoreDataClass.swift */,
+				239FDB881F53F61300AFF736 /* User+CoreDataProperties.swift */,
 				2371CCBE1F4EE7830054D698 /* Station.swift */,
+				239FDB911F541C7200AFF736 /* FlightData.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -114,6 +134,7 @@
 				7EB83F1B1F47504200568CF2 /* AppDelegate.swift */,
 				7EB83F341F475A1F00568CF2 /* LoginViewController.swift */,
 				7EB83F3A1F4FF2E300568CF2 /* AddStationTableViewController.swift */,
+				239FDB8F1F53F63700AFF736 /* CoreDataHelper.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -252,10 +273,17 @@
 			files = (
 				7EB83F351F475A1F00568CF2 /* LoginViewController.swift in Sources */,
 				2371CCBF1F4EE7830054D698 /* Station.swift in Sources */,
+				239FDB8C1F53F61300AFF736 /* User+CoreDataProperties.swift in Sources */,
 				7EB83F3B1F4FF2E300568CF2 /* AddStationTableViewController.swift in Sources */,
 				7EB83F241F47504200568CF2 /* GrawApp.xcdatamodeld in Sources */,
 				7EB83F1C1F47504200568CF2 /* AppDelegate.swift in Sources */,
+				239FDB8E1F53F61300AFF736 /* Station+CoreDataProperties.swift in Sources */,
+				239FDB921F541C7200AFF736 /* FlightData.swift in Sources */,
 				7EB83F391F4FEEC000568CF2 /* StationViewController.swift in Sources */,
+				23304DDE1F5444D000C46B62 /* WeatherDataModel.swift in Sources */,
+				239FDB901F53F63700AFF736 /* CoreDataHelper.swift in Sources */,
+				239FDB8B1F53F61300AFF736 /* User+CoreDataClass.swift in Sources */,
+				239FDB8D1F53F61300AFF736 /* Station+CoreDataClass.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

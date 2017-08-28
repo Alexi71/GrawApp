@@ -2,6 +2,30 @@
 <Workspace
    version = "1.0">
    <FileRef
+      location = "group:/Users/KotikA/Library/Mobile Documents/com~apple~CloudDocs/Swift/Udemy/GrawApp/Model/Station+CoreDataClass.swift">
+   </FileRef>
+   <FileRef
+      location = "group:/Users/KotikA/Library/Mobile Documents/com~apple~CloudDocs/Swift/Udemy/GrawApp/Model/Station+CoreDataProperties.swift">
+   </FileRef>
+   <FileRef
+      location = "group:/Users/KotikA/Library/Mobile Documents/com~apple~CloudDocs/Swift/Udemy/GrawApp/Model/User+CoreDataClass.swift">
+   </FileRef>
+   <FileRef
+      location = "group:/Users/KotikA/Library/Mobile Documents/com~apple~CloudDocs/Swift/Udemy/GrawApp/Model/User+CoreDataProperties.swift">
+   </FileRef>
+   <FileRef
+      location = "group:/Users/KotikA/Library/Mobile Documents/com~apple~CloudDocs/Swift/Udemy/GrawApp/Model/User+CoreDataClass.swift">
+   </FileRef>
+   <FileRef
+      location = "group:/Users/KotikA/Library/Mobile Documents/com~apple~CloudDocs/Swift/Udemy/GrawApp/Model/User+CoreDataProperties.swift">
+   </FileRef>
+   <FileRef
+      location = "group:/Users/KotikA/Library/Mobile Documents/com~apple~CloudDocs/Swift/Udemy/GrawApp/Model/Station+CoreDataClass.swift">
+   </FileRef>
+   <FileRef
+      location = "group:/Users/KotikA/Library/Mobile Documents/com~apple~CloudDocs/Swift/Udemy/GrawApp/Model/Station+CoreDataProperties.swift">
+   </FileRef>
+   <FileRef
       location = "group:/Users/KotikA/Library/Mobile Documents/com~apple~CloudDocs/Swift/Udemy/GrawApp/Controller/StationViewController.swift">
    </FileRef>
    <FileRef

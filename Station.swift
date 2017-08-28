@@ -7,7 +7,7 @@
 //
 
 import Foundation
-class Station {
+class StationItem {
     var id :String = ""
     var name :String = ""
     var city: String = ""
