@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import SWRevealViewController
 
 class RearViewController: UIViewController, UITableViewDelegate,UITableViewDataSource {
 
@@ -48,6 +49,15 @@ class RearViewController: UIViewController, UITableViewDelegate,UITableViewDataS
             let nc = storyboard.instantiateViewController(withIdentifier: "home") as! UINavigationController
             revealViewController().pushFrontViewController(nc, animated: true)
             //dismiss(animated: true, completion: nil)
+        }
+        else if (menuItem == "add") {
+            let storyboard = UIStoryboard(name: "Main", bundle: nil)
+            let nc = storyboard.instantiateViewController(withIdentifier: "addStationNavigation") as! UINavigationController
+            //let vc = nc.topViewController as! AddStationTableViewController
+            //vc.activeStation = self.activeStation
+            
+            let rvc:SWRevealViewController = self.revealViewController() as SWRevealViewController
+            rvc.pushFrontViewController(nc, animated: true)
         }
     }
     
