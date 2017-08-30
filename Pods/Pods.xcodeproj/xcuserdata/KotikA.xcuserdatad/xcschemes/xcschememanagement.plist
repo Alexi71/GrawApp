@@ -24,6 +24,11 @@
 			<key>orderHint</key>
 			<integer>5</integer>
 		</dict>
+		<key>SWRevealViewController.xcscheme</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>7</integer>
+		</dict>
 		<key>SwiftyJSON.xcscheme</key>
 		<dict>
 			<key>orderHint</key>

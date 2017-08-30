@@ -9,6 +9,7 @@
 import UIKit
 import FirebaseAuth
 import FirebaseDatabase
+import SWRevealViewController
 
 class LoginViewController: UIViewController {
     @IBOutlet weak var emailTextField: UITextField!
@@ -46,8 +47,16 @@ class LoginViewController: UIViewController {
                         else {
                             // User sign in was successfully
                             self.activeStation = self.GetActiveStation()
+                            
                             if self.activeStation != nil {
-                                self.performSegue(withIdentifier: "StationFlights", sender: nil)
+                                let storyboard = UIStoryboard(name: "Main", bundle: nil)
+                                let nc = storyboard.instantiateViewController(withIdentifier: "StationNavigation") as! UINavigationController
+                                let vc = nc.topViewController as! StationViewController
+                                vc.activeStation = self.activeStation
+                                
+                                let rvc:SWRevealViewController = self.revealViewController() as SWRevealViewController
+                                rvc.pushFrontViewController(nc, animated: true)
+                                //self.performSegue(withIdentifier: "StationFlights", sender: nil)
                             }
                             else {
                                self.performSegue(withIdentifier: "AuthToStation", sender: self)

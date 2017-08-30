@@ -2,7 +2,7 @@
 //  User+CoreDataClass.swift
 //  
 //
-//  Created by Alexander Kotik on 28.08.17.
+//  Created by Alexander Kotik on 30.08.17.
 //
 //
 

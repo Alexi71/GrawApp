@@ -14,7 +14,7 @@
             buildForArchiving = "YES">
             <BuildableReference
                BuildableIdentifier = 'primary'
-               BlueprintIdentifier = 'E40D1CE1AB2F45FFFD8D7FF8AB3F4DCC'
+               BlueprintIdentifier = '25D1CBDCFB5E245430EEE7A402359556'
                BlueprintName = 'Pods-GrawApp'
                ReferencedContainer = 'container:Pods.xcodeproj'
                BuildableName = 'Pods-GrawApp.framework'>

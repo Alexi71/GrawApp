@@ -26,10 +26,10 @@ class CoreDataHelper {
     {
         if let context = (UIApplication.shared.delegate as? AppDelegate)?.persistentContainer.viewContext {
             if !updateUser(userId: userId, stationItem: stationItem) {
-            
+                stationItem.isdefault = true
                 let item = User(entity: User.entity(), insertInto: context)
                 item.id = userId
-                item.userstation = stationItem
+                item.addToUserstation(stationItem)
                 try? context.save()
             }
         }
@@ -58,9 +58,29 @@ class CoreDataHelper {
             
             if let userData = try? context.fetch(fetchRequest)  {
                 if userData.count > 0 {
-                    if let station = userData[0].userstation {
-                        return station
+                    if let stations = userData[0].userstation?.allObjects as? [Station] {
+                        for station in stations {
+                            print ("station: \(station.id)")
+                            if station.isdefault {
+                                
+                                return station
+                            }
+                        }
+                        let firstItem = stations.first(where: { (item) -> Bool in
+                            if !item.isdefault {
+                                return true
+                            }
+                            else {
+                                return false
+                            }
+                        })
+                        if let fi = firstItem {
+                            print ("station: \(fi.id)")
+                        }
+                        return firstItem
+                        //return station
                     }
+                
                 }
             }
             

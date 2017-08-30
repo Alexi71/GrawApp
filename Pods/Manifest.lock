@@ -48,6 +48,7 @@ PODS:
   - nanopb/decode (0.3.8)
   - nanopb/encode (0.3.8)
   - SwiftyJSON (3.1.4)
+  - SWRevealViewController (2.3.0)
 
 DEPENDENCIES:
   - Alamofire
@@ -56,6 +57,7 @@ DEPENDENCIES:
   - Firebase/Database
   - Firebase/Storage
   - SwiftyJSON
+  - SWRevealViewController
 
 SPEC CHECKSUMS:
   Alamofire: f28cdffd29de33a7bfa022cbd63ae95a27fae140
@@ -70,7 +72,8 @@ SPEC CHECKSUMS:
   GTMSessionFetcher: 5ad62e8200fa00ed011fe5e08d27fef72c5b1429
   nanopb: 5601e6bca2dbf1ed831b519092ec110f66982ca3
   SwiftyJSON: c2842d878f95482ffceec5709abc3d05680c0220
+  SWRevealViewController: 6d3fd97f70112fd7cef9de14df4260eacce4c63a
 
-PODFILE CHECKSUM: 25cc8398f6b5b550c1b760519d5b879e9736f4c9
+PODFILE CHECKSUM: 908aa43b0727a6e44a485da1c85c91eb3b6e121b
 
 COCOAPODS: 1.2.0

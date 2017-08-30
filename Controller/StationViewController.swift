@@ -10,6 +10,8 @@ import FirebaseDatabase
 import MapKit
 import Alamofire
 import SwiftyJSON
+import SWRevealViewController
+
 
 
 class StationViewController:
@@ -20,6 +22,7 @@ UITableViewDataSource{
     @IBOutlet weak var weatherIcon: UIImageView!
     @IBOutlet weak var temperatureLabel: UILabel!
     @IBOutlet weak var mapView: MKMapView!
+    @IBOutlet weak var weatherView: UIView!
     
     @IBOutlet weak var tableView: UITableView!
     var manager = CLLocationManager()
@@ -50,7 +53,7 @@ UITableViewDataSource{
         self.tableView.backgroundColor = UIColor.clear
         tableView.tableFooterView = UIView()
         tableView.tableFooterView?.backgroundColor = UIColor(red: 2/255, green: 64/255, blue: 123/255, alpha: 1.0)
-       
+        weatherView.backgroundColor =  UIColor(red: 2/255, green: 64/255, blue: 123/255, alpha: 1.0)
         initializeDatabase()
         if let station = activeStation {
             self.title = station.name + ", " + station.id
@@ -59,6 +62,8 @@ UITableViewDataSource{
         // Do any additional setup after loading the view.
     }
     @IBAction func logoutTapped(_ sender: UIBarButtonItem) {
+       // let vc =
+       // self.revealViewController().pushFrontViewController(<#T##frontViewController: UIViewController!##UIViewController!#>, animated: <#T##Bool#>)
         dismiss(animated: true, completion: nil)
     }
     
@@ -87,6 +92,10 @@ UITableViewDataSource{
                 mapView.setRegion(region, animated: false)
             }
         }
+    }
+    @IBAction func hamburgerTapped(_ sender: UIBarButtonItem) {
+        self.revealViewController().revealToggle(sender)
+        //SWRevealViewController 
     }
     
     //MARK: - Database
