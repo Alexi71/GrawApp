@@ -11,6 +11,7 @@ import MapKit
 import Alamofire
 import SwiftyJSON
 import SWRevealViewController
+import SFBusyIndicatorUI
 
 
 
@@ -18,6 +19,7 @@ class StationViewController:
 UIViewController,CLLocationManagerDelegate,MKMapViewDelegate,UITableViewDelegate,
 UITableViewDataSource{
 
+    @IBOutlet var mainView: UIView!
     @IBOutlet weak var cityLabel: UILabel!
     @IBOutlet weak var weatherIcon: UIImageView!
     @IBOutlet weak var temperatureLabel: UILabel!
@@ -34,18 +36,28 @@ UITableViewDataSource{
     let WEATHER_URL = "http://api.openweathermap.org/data/2.5/weather"
     let APP_ID = "e72ca729af228beabd5d20e3b7749713"
     let weatherDataModel = WeatherDataModel()
-    
+    var busyIndicator:SFBusyIndicator=SFBusyIndicator()
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        busyIndicator.frame = CGRect(x: self.view.bounds.width/2-40, y: self.view.bounds.height/2-40, width: 80, height: 80)
+        busyIndicator.isOpaque = true
+        busyIndicator.backgroundColor = UIColor(red: 255/255, green: 255/255, blue: 255/255, alpha: 0.0)
+        busyIndicator.duration = 1
+        busyIndicator.viewBoxWidth = 80
+        busyIndicator.viewBoxHeight = 80
+        busyIndicator.animationType = SFBusyIndicatorAnimationTypeSlicedCircle
+        busyIndicator.foreground =  UIColor.orange
+        busyIndicator.isHidden = true
+        self.view.addSubview(busyIndicator)
         manager.delegate = self
         tableView.delegate = self
         tableView.dataSource = self
         
         if CLLocationManager.authorizationStatus() == .authorizedWhenInUse {
-            mapView.showsUserLocation = true
-            manager.startUpdatingLocation()
+            //mapView.showsUserLocation = true
+            addAnnotationOfStation()
+            //manager.startUpdatingLocation()
         }
         else {
               manager.requestWhenInUseAuthorization();
@@ -54,6 +66,7 @@ UITableViewDataSource{
         tableView.tableFooterView = UIView()
         tableView.tableFooterView?.backgroundColor = UIColor(red: 2/255, green: 64/255, blue: 123/255, alpha: 1.0)
         weatherView.backgroundColor =  UIColor(red: 2/255, green: 64/255, blue: 123/255, alpha: 1.0)
+        mainView.backgroundColor =  UIColor(red: 2/255, green: 64/255, blue: 123/255, alpha: 1.0)
         initializeDatabase()
         if let station = activeStation {
             self.title = station.name + ", " + station.id
@@ -61,15 +74,11 @@ UITableViewDataSource{
         
         // Do any additional setup after loading the view.
     }
-    @IBAction func logoutTapped(_ sender: UIBarButtonItem) {
-       // let vc =
-       // self.revealViewController().pushFrontViewController(<#T##frontViewController: UIViewController!##UIViewController!#>, animated: <#T##Bool#>)
-        dismiss(animated: true, completion: nil)
-    }
+   
     
-    func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+    /*func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
         cell.backgroundColor = UIColor.clear
-    }
+    }*/
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -122,7 +131,7 @@ UITableViewDataSource{
                     self.flights.append(item)
                     
                     self.tableView.reloadData()
-                    self.addAnnotationOfStation()
+                    
                 }
         
             }
@@ -158,26 +167,34 @@ UITableViewDataSource{
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cellId", for: indexPath)
+        cell.backgroundColor = UIColor(red: 2/255, green: 64/255, blue: 123/255, alpha: 1.0)
+        cell.textLabel?.textColor = UIColor.white
         cell.textLabel?.text = flights[indexPath.row].date + " " + flights[indexPath.row].time
-        UITableViewCell.appearance().textLabel?.textColor = UIColor(red: 2/255, green: 64/255, blue: 123/255, alpha: 1.0)
+      
+        /*UITableViewCell.appearance().textLabel?.textColor = UIColor(red: 2/255, green: 64/255, blue: 123/255, alpha: 1.0)
         cell.textLabel?.backgroundColor = UIColor(red: 2/255, green: 64/255, blue: 123/255, alpha: 1.0)
-        UITableViewCell.appearance().backgroundColor = UIColor.clear
+        UITableViewCell.appearance().backgroundColor = UIColor.clear*/
         return cell
         
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        /*let item = stationItems[indexPath.row]
-        let anno = MKPointAnnotation()
-        if let lat = Double(item.latitude) {
-            anno.coordinate.latitude = lat
+        let flight = flights[indexPath.row]
+        busyIndicator.isHidden = false
+        Alamofire.request(flight.url, method: .get, parameters: nil).responseJSON{
+            response in
+            self.busyIndicator.isHidden = true
+            if response.result.isSuccess{
+                print ("Success. Got the weather data")
+                let weatherJSON:JSON = JSON(response.result.value!)
+                print (weatherJSON[1]["Time"].int!)
+                //self.updateWeatherData(json: weatherJSON)
+            }
+            else {
+                print ("Error \(response.result.error ?? "Connection issue" as! Error)")
+                self.cityLabel.text = "Connection issue"
+            }
         }
-        if let long = Double(item.longitude) {
-            anno.coordinate.longitude = long
-        }
-        mapView.addAnnotation(anno)
-        let region = MKCoordinateRegionMakeWithDistance(anno.coordinate, 1000, 1000)
-        mapView.setRegion(region, animated: false) */
     }
     
     func tableView(_ tableView: UITableView, accessoryButtonTappedForRowWith indexPath: IndexPath) {
@@ -253,6 +270,41 @@ UITableViewDataSource{
         cityLabel.text = weatherDataModel.city
         temperatureLabel.text = "\(weatherDataModel.temperature)°"
         weatherIcon.image = UIImage(named: weatherDataModel.weatherIconName)
+    }
+    
+    func customActivityIndicatory(_ viewContainer: UIView, startAnimate:Bool? = true) -> UIActivityIndicatorView {
+        let mainContainer: UIView = UIView(frame: viewContainer.frame)
+        mainContainer.center = viewContainer.center
+        mainContainer.backgroundColor = UIColor.init(hexString: "FFFFFF")
+        mainContainer.alpha = 0.5
+        mainContainer.tag = 789456123
+        mainContainer.isUserInteractionEnabled = false
+        
+        let viewBackgroundLoading: UIView = UIView(frame: CGRect(x:0,y: 0,width: 80,height: 80))
+        viewBackgroundLoading.center = viewContainer.center
+        viewBackgroundLoading.backgroundColor = UIColor.init(hexString: "444444")
+        viewBackgroundLoading.alpha = 0.5
+        viewBackgroundLoading.clipsToBounds = true
+        viewBackgroundLoading.layer.cornerRadius = 15
+        
+        let activityIndicatorView: UIActivityIndicatorView = UIActivityIndicatorView()
+        activityIndicatorView.frame = CGRect(x:0.0,y: 0.0,width: 40.0, height: 40.0)
+        activityIndicatorView.activityIndicatorViewStyle =
+            UIActivityIndicatorViewStyle.whiteLarge
+        activityIndicatorView.center = CGPoint(x: viewBackgroundLoading.frame.size.width / 2, y: viewBackgroundLoading.frame.size.height / 2)
+        if startAnimate!{
+            viewBackgroundLoading.addSubview(activityIndicatorView)
+            mainContainer.addSubview(viewBackgroundLoading)
+            viewContainer.addSubview(mainContainer)
+            activityIndicatorView.startAnimating()
+        }else{
+            for subview in viewContainer.subviews{
+                if subview.tag == 789456123{
+                    subview.removeFromSuperview()
+                }
+            }
+        }
+        return activityIndicatorView
     }
 
 }

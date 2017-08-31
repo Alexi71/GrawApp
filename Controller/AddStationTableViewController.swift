@@ -23,6 +23,11 @@ class AddStationTableViewController: UITableViewController,UISearchBarDelegate {
         super.viewDidLoad()
         searchBar.delegate = self
         searchBar.returnKeyType = UIReturnKeyType.done
+        if activeStation == nil {
+              if let userId = Auth.auth().currentUser?.uid {
+                activeStation = CoreDataHelper.getDefaultStationFromUser(userId: userId)
+            }
+        }
         //ReadUserStations()
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false

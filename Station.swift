@@ -20,7 +20,3 @@ class StationItem {
     
 }
 
-class UserStation {
-    var key : String = ""
-    var isActive : Bool = false
-}
