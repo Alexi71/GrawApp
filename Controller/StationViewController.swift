@@ -40,9 +40,9 @@ UITableViewDataSource{
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        busyIndicator.frame = CGRect(x: self.view.bounds.width/2-40, y: self.view.bounds.height/2-40, width: 80, height: 80)
+        busyIndicator.frame = CGRect(x: 0, y: 0, width: self.view.bounds.width, height: self.view.bounds.height)
         busyIndicator.isOpaque = true
-        busyIndicator.backgroundColor = UIColor(red: 255/255, green: 255/255, blue: 255/255, alpha: 0.0)
+        busyIndicator.backgroundColor = UIColor(red: 255/255, green: 255/255, blue: 255/255, alpha: 0.5)
         busyIndicator.duration = 1
         busyIndicator.viewBoxWidth = 80
         busyIndicator.viewBoxHeight = 80
@@ -56,7 +56,7 @@ UITableViewDataSource{
         
         if CLLocationManager.authorizationStatus() == .authorizedWhenInUse {
             //mapView.showsUserLocation = true
-            addAnnotationOfStation()
+            //addAnnotationOfStation()
             //manager.startUpdatingLocation()
         }
         else {
@@ -187,7 +187,24 @@ UITableViewDataSource{
             if response.result.isSuccess{
                 print ("Success. Got the weather data")
                 let weatherJSON:JSON = JSON(response.result.value!)
+               // let data:NSData = weatherJSON.rawValue as! NSData
+                //let json:JSON = JSON(data)
+                //print (weatherJSON)
                 print (weatherJSON[1]["Time"].int!)
+                print (weatherJSON.count)
+                print ("Try to perform segue")
+                let inputData:InpuDataController = InpuDataController(data: weatherJSON)
+                print(inputData.inputDataArray.count)
+                self.performSegue(withIdentifier: "gotoChartView", sender: inputData)
+                /*let storyboard = UIStoryboard(name: "Main", bundle: nil)
+                let nc = storyboard.instantiateViewController(withIdentifier: "tabViewData") as! UITabBarController
+                //let vc = nc. as! AddStationTableViewController
+                //vc.activeStation = self.activeStation
+                
+                let rvc:SWRevealViewController = self.revealViewController() as SWRevealViewController
+                rvc.pushFrontViewController (nc, animated: true)
+                */
+                
                 //self.updateWeatherData(json: weatherJSON)
             }
             else {
@@ -201,15 +218,26 @@ UITableViewDataSource{
         print("tapped")
     }
     
-    /*
+    
     // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         // Get the new view controller using segue.destinationViewController.
         // Pass the selected object to the new view controller.
+        let data:InpuDataController = sender as! InpuDataController
+        if let destinationVc = segue.destination as? UITabBarController {
+            if let nc = destinationVc.viewControllers![0] as? UINavigationController {
+                if let targetController = nc.topViewController as? ChartViewController {
+                    targetController.dataItems = data
+                }
+            }
+            
+            
+        }
+        
     }
-    */
+    
     
     //MARK: - Networking
     /***************************************************************/

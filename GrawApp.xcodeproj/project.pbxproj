@@ -18,6 +18,10 @@
 		2371CCBF1F4EE7830054D698 /* Station.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2371CCBE1F4EE7830054D698 /* Station.swift */; };
 		2372571B1F5810C60063269A /* FireBaseHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2372571A1F5810C60063269A /* FireBaseHelper.swift */; };
 		238E59971F4DC79900B87C3A /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 238E59961F4DC62D00B87C3A /* GoogleService-Info.plist */; };
+		23918BA01F595F7000F2417A /* ChartViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23918B9F1F595F7000F2417A /* ChartViewController.swift */; };
+		23918BA21F597AA300F2417A /* InputData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23918BA11F597AA300F2417A /* InputData.swift */; };
+		23918BA41F597D8500F2417A /* InputDataController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23918BA31F597D8500F2417A /* InputDataController.swift */; };
+		23918BA61F5987B800F2417A /* SFChartUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 23918BA51F5987B700F2417A /* SFChartUI.framework */; };
 		239FDB901F53F63700AFF736 /* CoreDataHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 239FDB8F1F53F63700AFF736 /* CoreDataHelper.swift */; };
 		239FDB921F541C7200AFF736 /* FlightData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 239FDB911F541C7200AFF736 /* FlightData.swift */; };
 		7EB83F1C1F47504200568CF2 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EB83F1B1F47504200568CF2 /* AppDelegate.swift */; };
@@ -43,6 +47,10 @@
 		2371CCBE1F4EE7830054D698 /* Station.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Station.swift; sourceTree = SOURCE_ROOT; };
 		2372571A1F5810C60063269A /* FireBaseHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FireBaseHelper.swift; sourceTree = "<group>"; };
 		238E59961F4DC62D00B87C3A /* GoogleService-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		23918B9F1F595F7000F2417A /* ChartViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChartViewController.swift; sourceTree = "<group>"; };
+		23918BA11F597AA300F2417A /* InputData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InputData.swift; sourceTree = "<group>"; };
+		23918BA31F597D8500F2417A /* InputDataController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InputDataController.swift; sourceTree = "<group>"; };
+		23918BA51F5987B700F2417A /* SFChartUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SFChartUI.framework; path = ../../../../../../Documents/Syncfusion/15.3.0.26/iOS/Frameworks/SFChartUI.framework; sourceTree = "<group>"; };
 		239FDB8F1F53F63700AFF736 /* CoreDataHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataHelper.swift; sourceTree = "<group>"; };
 		239FDB911F541C7200AFF736 /* FlightData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlightData.swift; sourceTree = "<group>"; };
 		639A13AABC8D738785DB2753 /* Pods-GrawApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GrawApp.release.xcconfig"; path = "Pods/Target Support Files/Pods-GrawApp/Pods-GrawApp.release.xcconfig"; sourceTree = "<group>"; };
@@ -65,6 +73,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				23918BA61F5987B800F2417A /* SFChartUI.framework in Frameworks */,
 				23241A161F584E1000EEAF08 /* SFBusyIndicatorUI.framework in Frameworks */,
 				FA410619A09B1B7B9F46D07C /* Pods_GrawApp.framework in Frameworks */,
 			);
@@ -84,6 +93,7 @@
 		53C78A147515F1201E5D1339 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				23918BA51F5987B700F2417A /* SFChartUI.framework */,
 				23241A151F584E1000EEAF08 /* SFBusyIndicatorUI.framework */,
 				9426769E4613DA376944FD4C /* Pods_GrawApp.framework */,
 			);
@@ -133,6 +143,7 @@
 				23304DDD1F5444D000C46B62 /* WeatherDataModel.swift */,
 				2371CCBE1F4EE7830054D698 /* Station.swift */,
 				239FDB911F541C7200AFF736 /* FlightData.swift */,
+				23918BA11F597AA300F2417A /* InputData.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -156,6 +167,8 @@
 				239FDB8F1F53F63700AFF736 /* CoreDataHelper.swift */,
 				236F3D9A1F5696ED0022927D /* RearViewController.swift */,
 				2372571A1F5810C60063269A /* FireBaseHelper.swift */,
+				23918B9F1F595F7000F2417A /* ChartViewController.swift */,
+				23918BA31F597D8500F2417A /* InputDataController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -301,6 +314,7 @@
 				7EB83F3B1F4FF2E300568CF2 /* AddStationTableViewController.swift in Sources */,
 				7EB83F241F47504200568CF2 /* GrawApp.xcdatamodeld in Sources */,
 				2372571B1F5810C60063269A /* FireBaseHelper.swift in Sources */,
+				23918BA01F595F7000F2417A /* ChartViewController.swift in Sources */,
 				7EB83F1C1F47504200568CF2 /* AppDelegate.swift in Sources */,
 				236F3DA81F56DF160022927D /* Station+CoreDataClass.swift in Sources */,
 				239FDB921F541C7200AFF736 /* FlightData.swift in Sources */,
@@ -308,6 +322,8 @@
 				23241A141F584AD800EEAF08 /* Extentions.swift in Sources */,
 				7EB83F391F4FEEC000568CF2 /* StationViewController.swift in Sources */,
 				23304DDE1F5444D000C46B62 /* WeatherDataModel.swift in Sources */,
+				23918BA21F597AA300F2417A /* InputData.swift in Sources */,
+				23918BA41F597D8500F2417A /* InputDataController.swift in Sources */,
 				239FDB901F53F63700AFF736 /* CoreDataHelper.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
