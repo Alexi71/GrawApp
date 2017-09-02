@@ -9,15 +9,20 @@
 import UIKit
 import SFChartUI
 
-class ChartViewController: UIViewController,SFChartDataSource {
+class ChartViewController: UIViewController,SFChartDataSource,SFChartDelegate {
 
     @IBOutlet weak var chartView: UIView!
     var dataItems:InpuDataController?
-    var data : [SFChartDataPoint] = []
-    
+    var temperatureData : [SFChartDataPoint] = []
+    var humidityData :[SFChartDataPoint] = []
+    var pressureData : [SFChartDataPoint] = []
+    var windData :[SFChartDataPoint] = []
+    let axis1 : SFNumericalAxis  = SFNumericalAxis()
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.navigationItem.backBarButtonItem?.title = "Back"
+        let backItem = UIBarButtonItem()
+        backItem.title = "Back"
+        self.navigationItem.backBarButtonItem = backItem
         
         //init chart.....
         let chart :SFChart = SFChart()
@@ -40,8 +45,9 @@ class ChartViewController: UIViewController,SFChartDataSource {
         NSLayoutConstraint.activate([horizontalConstraint, verticalConstraint, widthConstraint, heightConstraint])
         
         
-        let axis1 : SFCategoryAxis  = SFCategoryAxis();
-        axis1.title.text            = "Month";
+        //let axis1 : SFNumericalAxis  = SFNumericalAxis()
+        axis1.interval = 600
+        axis1.title.text            = "Minutes"
         chart.primaryAxis           = axis1;
         
         //Adding secondary axis to the chart.
@@ -50,22 +56,29 @@ class ChartViewController: UIViewController,SFChartDataSource {
         axis2.title.text            = "Temperature";
         chart.secondaryAxis         = axis2;
         chart.title.text = "Weather Analysis"
-        
+        chart.legend.isVisible                    = true;
+        chart.legend.toggleSeriesVisibility     = true;
         //self.view.addSubview(chart)
-        data.append(SFChartDataPoint( xValue: "Jan", andYValue: 42));
-        data.append(SFChartDataPoint( xValue: "Feb", andYValue: 44));
-        data.append(SFChartDataPoint( xValue: "Mar", andYValue: 53));
-        data.append(SFChartDataPoint( xValue: "Apr", andYValue: 64));
-        data.append(SFChartDataPoint( xValue: "May", andYValue: 75));
-        data.append(SFChartDataPoint( xValue: "Jun", andYValue: 83));
-        data.append(SFChartDataPoint( xValue: "Jul", andYValue: 87));
-        data.append(SFChartDataPoint( xValue: "Aug", andYValue: 84));
-        data.append(SFChartDataPoint( xValue: "Sep", andYValue: 78));
-        data.append(SFChartDataPoint( xValue: "Oct", andYValue: 67));
-        data.append(SFChartDataPoint( xValue: "Nov", andYValue: 55));
-        data.append(SFChartDataPoint( xValue: "Dec", andYValue: 45))
+        if let dataArray = dataItems {
+            for item in dataArray.inputDataArray {
+                temperatureData.append(SFChartDataPoint(xValue: item.time, andYValue: item.temperature))
+            }
+            
+            for item in dataArray.inputDataArray {
+                humidityData.append(SFChartDataPoint(xValue: item.time, andYValue: item.humidity))
+            }
+            
+            for item in dataArray.inputDataArray {
+                pressureData.append(SFChartDataPoint(xValue: item.time, andYValue: item.pressure))
+            }
+            
+            for item in dataArray.inputDataArray {
+                windData.append(SFChartDataPoint(xValue: item.time, andYValue: item.windSpeed))
+            }
+        }
+      
         chart.dataSource = self
-        
+        chart.delegate = self
         
         
     }
@@ -75,23 +88,69 @@ class ChartViewController: UIViewController,SFChartDataSource {
         // Dispose of any resources that can be recreated.
     }
     
-
+    func chart(_ chart: SFChart!, formattedAxisLabelForLabel label: String!, forValue value: Any!, axis: SFAxis!) -> String! {
+        if axis == axis1 {
+            var value :Int = Int(label)!
+            value = value / 60
+            let newLabel = "\(value)"
+            return newLabel
+        }
+        
+        return label
+    }
     func chart(_ chart: SFChart!, seriesAt index: Int) -> SFSeries! {
-        let series : SFSplineSeries = SFSplineSeries();
-        series.label                = "Low";
-        return series;
+        let series : SFLineSeries = SFLineSeries()
+        if index == 0 {
+            /*let axis2 :SFNumericalAxis   = SFNumericalAxis()
+            axis2.minimum = 40
+            axis2.maximum = -90
+            axis2.showMajorGridLines      = false;
+            axis2.isOpposedPosition         = true;
+            axis2.title.text              = "temperature";
+            axis2.interval                = 10;
+            series.yAxis = axis2 */
+            series.label                = "Temperature"
+            return series
+        }
+        else {
+            let axis2 :SFNumericalAxis   = SFNumericalAxis()
+            axis2.minimum = 0
+            axis2.maximum = 100
+            axis2.showMajorGridLines      = false;
+            axis2.isOpposedPosition         = true;
+            axis2.title.text              = "Number of Customers";
+            axis2.minimum                 = 0;
+            axis2.maximum                 = 100;
+            axis2.interval                = 5;
+            //let series : SFLineSeries = SFLineSeries()
+            series.yAxis = axis2
+            series.label                = "Humidity"
+            series.color = UIColor.green
+            
+            return series
+        }
     }
     
     func numberOfSeries(in chart: SFChart!) -> Int {
-        return 1
+        return 2
     }
     func chart(_ chart: SFChart!, numberOfDataPointsForSeriesAt index: Int) -> Int
     {
-        return data.count;
+        if index == 0 {
+            return temperatureData.count
+        }
+        else {
+            return humidityData.count
+        }
     }
     
     func chart(_ chart: SFChart!, dataPointAt index: Int, forSeriesAt seriesIndex: Int) -> SFChartDataPoint! {
-        return data[index]
+        if seriesIndex == 0 {
+            return temperatureData[index]
+        }
+        else {
+            return humidityData[index]
+        }
     }
     /*
     // MARK: - Navigation

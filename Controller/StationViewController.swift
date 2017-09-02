@@ -230,6 +230,9 @@ UITableViewDataSource{
             if let nc = destinationVc.viewControllers![0] as? UINavigationController {
                 if let targetController = nc.topViewController as? ChartViewController {
                     targetController.dataItems = data
+                    let backItem = UIBarButtonItem()
+                    backItem.title = "Back"
+                    navigationItem.backBarButtonItem = backItem
                 }
             }
             
