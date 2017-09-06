@@ -228,7 +228,7 @@ UITableViewDataSource{
         let data:InpuDataController = sender as! InpuDataController
         if let destinationVc = segue.destination as? UITabBarController {
             if let nc = destinationVc.viewControllers![0] as? UINavigationController {
-                if let targetController = nc.topViewController as? ChartViewController {
+                if let targetController = nc.topViewController as? ChartPageViewController {
                     targetController.dataItems = data
                     let backItem = UIBarButtonItem()
                     backItem.title = "Back"

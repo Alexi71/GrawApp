@@ -9,10 +9,10 @@
 import UIKit
 import SFChartUI
 
-class ChartViewController: UIViewController,SFChartDataSource,SFChartDelegate {
+class ChartViewController: ChartBaseViewController,SFChartDataSource,SFChartDelegate {
 
     @IBOutlet weak var chartView: UIView!
-    var dataItems:InpuDataController?
+    //var dataItems:InpuDataController?
     var temperatureData : [SFChartDataPoint] = []
     var humidityData :[SFChartDataPoint] = []
     var pressureData : [SFChartDataPoint] = []
@@ -26,11 +26,14 @@ class ChartViewController: UIViewController,SFChartDataSource,SFChartDelegate {
         
         //init chart.....
         let chart :SFChart = SFChart()
-        print ("x: \(chartView.frame.origin.x) y: \(chartView.frame.origin.y) width: \(chartView.frame.width) height: \(chartView.frame.height)" )
+        let zoomPan : SFChartZoomPanBehavior = SFChartZoomPanBehavior ()
+        zoomPan.isEnableSelectionZooming  = true
+        chart.addBehavior(zoomPan)
         let sampleFrame :CGRect = CGRect(x: self.view.bounds.origin.x, y: self.view.bounds.origin.y, width: self.view.bounds.size.width, height: self.view.bounds.size.height)
         chart.frame = sampleFrame
         
         chart.translatesAutoresizingMaskIntoConstraints = false
+        
         view.addSubview(chart)
         /*
         let horizontalConstraint = NSLayoutConstraint(item: chart, attribute: NSLayoutAttribute.bottom, relatedBy: NSLayoutRelation.equal, toItem: view.safeAreaLayoutGuide, attribute: NSLayoutAttribute.bottom, multiplier: 1, constant: 0)
@@ -101,56 +104,98 @@ class ChartViewController: UIViewController,SFChartDataSource,SFChartDelegate {
     func chart(_ chart: SFChart!, seriesAt index: Int) -> SFSeries! {
         let series : SFLineSeries = SFLineSeries()
         if index == 0 {
-            /*let axis2 :SFNumericalAxis   = SFNumericalAxis()
-            axis2.minimum = 40
-            axis2.maximum = -90
-            axis2.showMajorGridLines      = false;
-            axis2.isOpposedPosition         = true;
-            axis2.title.text              = "temperature";
-            axis2.interval                = 10;
-            series.yAxis = axis2 */
+            series.enableAnimation = true
             series.label                = "Temperature"
             return series
         }
-        else {
+        else if index == 1 {
             let axis2 :SFNumericalAxis   = SFNumericalAxis()
             axis2.minimum = 0
             axis2.maximum = 100
-            axis2.showMajorGridLines      = false;
-            axis2.isOpposedPosition         = true;
-            axis2.title.text              = "Number of Customers";
-            axis2.minimum                 = 0;
-            axis2.maximum                 = 100;
-            axis2.interval                = 5;
+            axis2.showMajorGridLines      = false
+            axis2.isOpposedPosition         = true
+            axis2.title.text              = "Number of Customers"
+            axis2.interval                = 5
+            axis2.isVisible = false
             //let series : SFLineSeries = SFLineSeries()
             series.yAxis = axis2
             series.label                = "Humidity"
             series.color = UIColor.green
-            
+            series.enableAnimation = true
+            return series
+        }
+        else if index == 2 {
+            let axis2 :SFLogarithmicAxis   = SFLogarithmicAxis()
+            axis2.minimum = 0
+            axis2.maximum = 1100
+            axis2.showMajorGridLines      = false
+            axis2.isOpposedPosition         = true
+            axis2.isVisible = false
+            axis2.interval                = 100
+            series.yAxis = axis2
+            series.label                = "Pressure"
+            series.enableAnimation = true
+            series.color = UIColor.red
+            series.dataMarker.showMarker = true
+            series.dataMarker.showLabel = true
+            series.enableTooltip = true
+            return series
+        }
+        else if index == 3 {
+            let axis2 :SFNumericalAxis   = SFNumericalAxis()
+            axis2.minimum = 0
+            axis2.maximum = 100
+            axis2.showMajorGridLines      = false
+            axis2.isOpposedPosition         = true
+            axis2.title.text              = "Number of Customers"
+            axis2.interval                = 10
+            axis2.isVisible = false
+            series.yAxis = axis2
+            series.label                = "Wind"
+            series.color = UIColor.cyan
+            series.enableAnimation = true
+            return series
+        }
+        else {
             return series
         }
     }
     
     func numberOfSeries(in chart: SFChart!) -> Int {
-        return 2
+        return 4
     }
     func chart(_ chart: SFChart!, numberOfDataPointsForSeriesAt index: Int) -> Int
     {
-        if index == 0 {
+        switch index {
+        case 0:
             return temperatureData.count
-        }
-        else {
+        case 1:
             return humidityData.count
+        case 2:
+            return pressureData.count
+        case 3:
+            return windData.count
+        default:
+            return 0
         }
+        
     }
     
     func chart(_ chart: SFChart!, dataPointAt index: Int, forSeriesAt seriesIndex: Int) -> SFChartDataPoint! {
-        if seriesIndex == 0 {
+        
+        switch seriesIndex {
+        case 0:
             return temperatureData[index]
-        }
-        else {
+        case 1:
             return humidityData[index]
+        case 2:
+            return pressureData[index]
+        case 3:
+            return windData[index]
+        default:
+            return SFChartDataPoint()
         }
+        
     }
     /*
     // MARK: - Navigation
