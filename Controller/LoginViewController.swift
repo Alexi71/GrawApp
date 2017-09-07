@@ -23,7 +23,24 @@ class LoginViewController: UIViewController {
     
     var loginIsActive: Bool = true
     
+    
     override func viewDidLoad() {
+       
+        /*let defaults = UserDefaults.standard
+        let username = defaults.object(forKey:"username") as? String
+        if let usr = username {
+            let password = defaults.object(forKey: "password") as? String
+            if let psw = password {
+                //Authorizied automatically
+                let firstcall = defaults.object(forKey: "firstcall") as? Bool
+                if let firstCall = firstcall {
+                    if firstCall {
+                        LoginAndMove(email: usr, password: psw)
+                        return
+                    }
+                }
+            }
+        }*/
         super.viewDidLoad()
         //CoreDataHelper.deleteAllUsers()
         // Do any additional setup after loading the view.
@@ -35,10 +52,13 @@ class LoginViewController: UIViewController {
     }
     
     @IBAction func upperButtonPressed(_ sender: UIButton) {
+        let defaults = UserDefaults.standard
+        defaults.set(false, forKey: "firtscall")
         if loginIsActive {
             if let email = emailTextField.text {
                 if let password = passwordtextField.text {
-                    Auth.auth().signIn(withEmail: email, password: password, completion: { (user, error) in
+                    LoginAndMove(email: email, password: password)
+                    /*Auth.auth().signIn(withEmail: email, password: password, completion: { (user, error) in
                         if error != nil {
                             if let errorCode = error?.localizedDescription {
                                 self.showError(errorText: errorCode)
@@ -46,7 +66,11 @@ class LoginViewController: UIViewController {
                         }
                         else {
                             // User sign in was successfully
+                            
                             self.activeStation = self.GetActiveStation()
+                            let defaults = UserDefaults.standard
+                            defaults.set(email, forKey: "username")
+                            defaults.set(password, forKey: "password")
                             
                             if self.activeStation != nil {
                                 let storyboard = UIStoryboard(name: "Main", bundle: nil)
@@ -63,7 +87,7 @@ class LoginViewController: UIViewController {
                             }
                             
                         }
-                    })
+                    })*/
                 }
             }
             else {
@@ -83,6 +107,42 @@ class LoginViewController: UIViewController {
                 }
             }
         }
+    }
+    
+    func LoginAndMove(email: String, password : String ) {
+        
+                Auth.auth().signIn(withEmail: email, password: password, completion: { (user, error) in
+                    if error != nil {
+                        if let errorCode = error?.localizedDescription {
+                            self.showError(errorText: errorCode)
+                        }
+                    }
+                    else {
+                        // User sign in was successfully
+                        
+                        self.activeStation = self.GetActiveStation()
+                        let defaults = UserDefaults.standard
+                        defaults.set(email, forKey: "username")
+                        defaults.set(password, forKey: "password")
+                        
+                        if self.activeStation != nil {
+                            let storyboard = UIStoryboard(name: "Main", bundle: nil)
+                            let nc = storyboard.instantiateViewController(withIdentifier: "StationNavigation") as! UINavigationController
+                            let vc = nc.topViewController as! StationViewController
+                            vc.activeStation = self.activeStation
+                            
+                            let rvc:SWRevealViewController = self.revealViewController() as SWRevealViewController
+                            rvc.pushFrontViewController(nc, animated: true)
+                            //self.performSegue(withIdentifier: "StationFlights", sender: nil)
+                        }
+                        else {
+                            self.performSegue(withIdentifier: "AuthToStation", sender: self)
+                        }
+                        
+                    }
+                })
+        
+    
     }
     
     func GetActiveStation() -> Station? {

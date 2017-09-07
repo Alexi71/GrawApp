@@ -222,10 +222,10 @@
                                 <rect key="frame" x="0.0" y="331" width="414" height="69"/>
                                 <subviews>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" image="dunno" translatesAutoresizingMaskIntoConstraints="NO" id="uXB-EB-Whz" userLabel="WeatherIcon">
-                                        <rect key="frame" x="36" y="2" width="64" height="64"/>
+                                        <rect key="frame" x="0.0" y="2" width="64" height="64"/>
                                     </imageView>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="21°" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TeY-gZ-Suu">
-                                        <rect key="frame" x="108" y="8" width="88" height="37"/>
+                                        <rect key="frame" x="0.0" y="8" width="88" height="37"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="88" id="KXW-rF-ffd"/>
                                         </constraints>
@@ -234,7 +234,7 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="connecting..." textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rX4-SN-Ffu">
-                                        <rect key="frame" x="103" y="37" width="260" height="24"/>
+                                        <rect key="frame" x="0.0" y="37" width="260" height="24"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="260" id="l13-Oi-9Yh"/>
                                         </constraints>
@@ -317,13 +317,13 @@
         <!--Chart View Controller-->
         <scene sceneID="iUZ-dE-Xo0">
             <objects>
-                <viewController id="VEt-9h-xSe" customClass="ChartViewController" customModule="GrawApp" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="ProfileTimeChart" useStoryboardIdentifierAsRestorationIdentifier="YES" id="VEt-9h-xSe" customClass="ChartViewController" customModule="GrawApp" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="eXa-iV-ogI">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="23A-pM-YyA">
-                                <rect key="frame" x="0.0" y="135" width="414" height="552"/>
+                                <rect key="frame" x="0.0" y="184" width="414" height="552"/>
                             </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -344,7 +344,47 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="iH4-EK-eQp" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4388" y="421"/>
+            <point key="canvasLocation" x="4516" y="-251"/>
+        </scene>
+        <!--Chart Page View Controller-->
+        <scene sceneID="GZy-IM-uRP">
+            <objects>
+                <pageViewController autoresizesArchivedViewToFullSize="NO" transitionStyle="scroll" navigationOrientation="horizontal" spineLocation="none" id="6SE-V7-a0P" customClass="ChartPageViewController" customModule="GrawApp" customModuleProvider="target" sceneMemberID="viewController">
+                    <navigationItem key="navigationItem" id="74e-Is-md5"/>
+                </pageViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="c0q-qO-oh7" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="4238" y="421"/>
+        </scene>
+        <!--Chart Altitude View Controller-->
+        <scene sceneID="MeP-s3-dJn">
+            <objects>
+                <viewController storyboardIdentifier="ProfileAltitudeChart" useStoryboardIdentifierAsRestorationIdentifier="YES" id="Tlg-ho-3bb" customClass="ChartAltitudeViewController" customModule="GrawApp" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="FdV-Uw-wWo">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="aWe-rb-htq">
+                                <rect key="frame" x="0.0" y="184" width="414" height="552"/>
+                                <color key="backgroundColor" red="1" green="0.29100967830000002" blue="0.37374019390000002" alpha="1" colorSpace="calibratedRGB"/>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="aWe-rb-htq" firstAttribute="leading" secondItem="GHK-0h-9BH" secondAttribute="leading" id="OjN-DR-uAL"/>
+                            <constraint firstItem="GHK-0h-9BH" firstAttribute="trailing" secondItem="aWe-rb-htq" secondAttribute="trailing" id="abe-Te-fKm"/>
+                            <constraint firstItem="aWe-rb-htq" firstAttribute="height" secondItem="FdV-Uw-wWo" secondAttribute="height" multiplier="0.75" id="md3-5i-KKI"/>
+                            <constraint firstItem="GHK-0h-9BH" firstAttribute="bottom" secondItem="aWe-rb-htq" secondAttribute="bottom" id="xCL-2q-IGx"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="GHK-0h-9BH"/>
+                    </view>
+                    <connections>
+                        <outlet property="ChartView" destination="aWe-rb-htq" id="sRv-W5-HPx"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="HkX-Fj-Q5W" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="4943" y="421"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="WT3-Y5-ZNy">
@@ -544,7 +584,7 @@
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
-                        <segue destination="VEt-9h-xSe" kind="relationship" relationship="rootViewController" id="gZ3-0U-uFe"/>
+                        <segue destination="6SE-V7-a0P" kind="relationship" relationship="rootViewController" id="0Ai-4S-TN0"/>
                     </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="MWT-p5-qdy" userLabel="First Responder" sceneMemberID="firstResponder"/>

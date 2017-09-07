@@ -13,7 +13,14 @@ class ChartPageViewController: UIPageViewController {
     var dataItems:InpuDataController?
     override func viewDidLoad() {
         super.viewDidLoad()
+        navigationController?.interactivePopGestureRecognizer?.isEnabled = false
+        
         dataSource = self
+        
+        var pageControl = UIPageControl.appearance()
+        pageControl.pageIndicatorTintColor = UIColor.lightGray
+        pageControl.currentPageIndicatorTintColor = UIColor.black
+        pageControl.backgroundColor = UIColor.white
         let firstViewController = getViewControllerByIndex(index: 0)
         if let vc = firstViewController as? ChartBaseViewController {
             vc.dataItems = dataItems
@@ -58,11 +65,45 @@ class ChartPageViewController: UIPageViewController {
 extension ChartPageViewController: UIPageViewControllerDataSource {
     
     func pageViewController(_ pageViewController: UIPageViewController, viewControllerBefore viewController: UIViewController) -> UIViewController? {
-        return nil
+        let pageContent = viewController as! ChartBaseViewController
+        var index = pageContent.index
+        if (index == NSNotFound || index == 0) {
+            return nil
+        }
+        index -= 1
+        return getViewControllerByIndex(index: index)
     }
     
     func pageViewController(_ pageViewController: UIPageViewController, viewControllerAfter viewController: UIViewController) -> UIViewController? {
-        return nil
+        let pageContent = viewController as! ChartBaseViewController
+        var index = pageContent.index
+        if (index == NSNotFound) {
+            return nil
+        }
+        
+        index += 1
+        if index == viewControllerIdentifiers.count {
+            return nil
+        }
+        
+        return getViewControllerByIndex(index: index)
+        
+    }
+    
+    func presentationCount(for pageViewController: UIPageViewController) -> Int {
+        return viewControllerIdentifiers.count
+    }
+    
+    func presentationIndex(for pageViewController: UIPageViewController) -> Int {
+        
+        if  let firstVC = viewControllers?.first {
+            if let identifier = firstVC.restorationIdentifier {
+                if let vcIndex = viewControllerIdentifiers.index(of: identifier) {
+                    return vcIndex
+                }
+            }
+        }
+        return 0
     }
     
 }

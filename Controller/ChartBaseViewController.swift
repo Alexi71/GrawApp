@@ -7,11 +7,17 @@
 //
 
 import UIKit
-
+import SFChartUI
 class ChartBaseViewController: UIViewController {
 
     var dataItems:InpuDataController?
     var index :Int = 0
+    
+    var temperatureData : [SFChartDataPoint] = []
+    var humidityData :[SFChartDataPoint] = []
+    var pressureData : [SFChartDataPoint] = []
+    var windData :[SFChartDataPoint] = []
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 

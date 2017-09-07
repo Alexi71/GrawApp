@@ -13,16 +13,11 @@ class ChartViewController: ChartBaseViewController,SFChartDataSource,SFChartDele
 
     @IBOutlet weak var chartView: UIView!
     //var dataItems:InpuDataController?
-    var temperatureData : [SFChartDataPoint] = []
-    var humidityData :[SFChartDataPoint] = []
-    var pressureData : [SFChartDataPoint] = []
-    var windData :[SFChartDataPoint] = []
+    
     let axis1 : SFNumericalAxis  = SFNumericalAxis()
     override func viewDidLoad() {
         super.viewDidLoad()
-        let backItem = UIBarButtonItem()
-        backItem.title = "Back"
-        self.navigationItem.backBarButtonItem = backItem
+        
         
         //init chart.....
         let chart :SFChart = SFChart()

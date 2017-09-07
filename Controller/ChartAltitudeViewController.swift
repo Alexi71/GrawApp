@@ -10,6 +10,8 @@ import UIKit
 
 class ChartAltitudeViewController: ChartBaseViewController {
 
+   
+    @IBOutlet weak var ChartView: UIView!
     override func viewDidLoad() {
         super.viewDidLoad()
 
