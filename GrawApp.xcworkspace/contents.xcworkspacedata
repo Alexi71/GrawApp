@@ -8,16 +8,16 @@
       location = "group:UserStation+CoreDataProperties.swift">
    </FileRef>
    <FileRef
+      location = "group:/Users/alexander.kotik/Documents/Xcode/Swift/GrawApp/GrawApp/Model/Station+CoreDataProperties.swift">
+   </FileRef>
+   <FileRef
+      location = "group:/Users/alexander.kotik/Documents/Xcode/Swift/GrawApp/GrawApp/Model/User+CoreDataClass.swift">
+   </FileRef>
+   <FileRef
+      location = "group:/Users/alexander.kotik/Documents/Xcode/Swift/GrawApp/GrawApp/Model/User+CoreDataProperties.swift">
+   </FileRef>
+   <FileRef
       location = "group:Station+CoreDataClass.swift">
-   </FileRef>
-   <FileRef
-      location = "group:/Users/KotikA/Library/Mobile Documents/com~apple~CloudDocs/Swift/Udemy/GrawApp/Model/Station+CoreDataProperties.swift">
-   </FileRef>
-   <FileRef
-      location = "group:/Users/KotikA/Library/Mobile Documents/com~apple~CloudDocs/Swift/Udemy/GrawApp/Model/User+CoreDataClass.swift">
-   </FileRef>
-   <FileRef
-      location = "group:/Users/KotikA/Library/Mobile Documents/com~apple~CloudDocs/Swift/Udemy/GrawApp/Model/User+CoreDataProperties.swift">
    </FileRef>
    <FileRef
       location = "group:GrawApp.xcodeproj">

@@ -9,6 +9,7 @@
 import UIKit
 
 class ChartPageViewController: UIPageViewController {
+    var pageControl = UIPageControl()
     let viewControllerIdentifiers : [String] = ["ProfileTimeChart","ProfileAltitudeChart"]
     var dataItems:InpuDataController?
     override func viewDidLoad() {
@@ -16,11 +17,9 @@ class ChartPageViewController: UIPageViewController {
         navigationController?.interactivePopGestureRecognizer?.isEnabled = false
         
         dataSource = self
-        
-        var pageControl = UIPageControl.appearance()
-        pageControl.pageIndicatorTintColor = UIColor.lightGray
-        pageControl.currentPageIndicatorTintColor = UIColor.black
-        pageControl.backgroundColor = UIColor.white
+        delegate = self
+        configurePageControl()
+      
         let firstViewController = getViewControllerByIndex(index: 0)
         if let vc = firstViewController as? ChartBaseViewController {
             vc.dataItems = dataItems
@@ -62,7 +61,7 @@ class ChartPageViewController: UIPageViewController {
 
 }
 
-extension ChartPageViewController: UIPageViewControllerDataSource {
+extension ChartPageViewController: UIPageViewControllerDataSource,UIPageViewControllerDelegate {
     
     func pageViewController(_ pageViewController: UIPageViewController, viewControllerBefore viewController: UIViewController) -> UIViewController? {
         let pageContent = viewController as! ChartBaseViewController
@@ -89,8 +88,31 @@ extension ChartPageViewController: UIPageViewControllerDataSource {
         return getViewControllerByIndex(index: index)
         
     }
+    func setupPageConrol () {
+        let pageControl = UIPageControl.appearance()
+        pageControl.pageIndicatorTintColor = UIColor.lightGray
+        pageControl.currentPageIndicatorTintColor = UIColor.black
+        pageControl.backgroundColor = UIColor.blue
+    }
     
+    func configurePageControl() {
+        // The total number of pages that are available is based on how many available colors we have.
+       
+        
+        pageControl = UIPageControl(frame: CGRect(x: 0,y: self.view.bounds.minX ,width: UIScreen.main.bounds.width,height: 50))
+        self.pageControl.numberOfPages = viewControllerIdentifiers.count
+        self.pageControl.currentPage = 0
+        self.pageControl.tintColor = UIColor.black
+        self.pageControl.pageIndicatorTintColor = UIColor.lightGray
+        self.pageControl.currentPageIndicatorTintColor = UIColor.black
+        self.view.addSubview(pageControl)
+    }
+    
+    /*
     func presentationCount(for pageViewController: UIPageViewController) -> Int {
+        let count = viewControllerIdentifiers.count
+        print (count)
+        setupPageConrol()
         return viewControllerIdentifiers.count
     }
     
@@ -104,6 +126,13 @@ extension ChartPageViewController: UIPageViewControllerDataSource {
             }
         }
         return 0
+    }*/
+    
+    func pageViewController(_ pageViewController: UIPageViewController, didFinishAnimating finished: Bool, previousViewControllers: [UIViewController], transitionCompleted completed: Bool) {
+        let pageContentViewController = pageViewController.viewControllers![0].restorationIdentifier!
+        self.pageControl.currentPage = viewControllerIdentifiers.index(of: pageContentViewController)!
     }
+    
+    
     
 }

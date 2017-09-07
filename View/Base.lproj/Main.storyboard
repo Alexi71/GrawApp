@@ -344,7 +344,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="iH4-EK-eQp" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4516" y="-251"/>
+            <point key="canvasLocation" x="4567" y="-452"/>
         </scene>
         <!--Chart Page View Controller-->
         <scene sceneID="GZy-IM-uRP">
@@ -384,7 +384,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="HkX-Fj-Q5W" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4943" y="421"/>
+            <point key="canvasLocation" x="5086" y="275"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="WT3-Y5-ZNy">
