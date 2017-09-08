@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="13221.4" systemVersion="16F73" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
+    <entity name="Station" representedClassName="Station" syncable="YES">
+        <attribute name="altitude" attributeType="String" syncable="YES"/>
+        <attribute name="city" attributeType="String" syncable="YES"/>
+        <attribute name="country" attributeType="String" syncable="YES"/>
+        <attribute name="id" attributeType="String" syncable="YES"/>
+        <attribute name="isdefault" optional="YES" attributeType="Boolean" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="key" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="latitude" attributeType="String" syncable="YES"/>
+        <attribute name="longitude" attributeType="String" syncable="YES"/>
+        <attribute name="name" attributeType="String" syncable="YES"/>
+        <relationship name="stationUser" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="User" inverseName="userstation" inverseEntity="User" syncable="YES"/>
+    </entity>
+    <entity name="User" representedClassName="User" syncable="YES">
+        <attribute name="id" attributeType="String" syncable="YES"/>
+        <relationship name="userstation" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Station" inverseName="stationUser" inverseEntity="Station" syncable="YES"/>
+    </entity>
+    <entity name="UserStation" representedClassName="UserStation" syncable="YES" codeGenerationType="class">
+        <attribute name="isdefault" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES" syncable="YES"/>
+        <relationship name="station" maxCount="1" deletionRule="Nullify" destinationEntity="Station" syncable="YES"/>
+        <relationship name="user" maxCount="1" deletionRule="Nullify" destinationEntity="User" syncable="YES"/>
+    </entity>
+    <elements>
+        <element name="Station" positionX="351" positionY="87" width="128" height="195"/>
+        <element name="User" positionX="-63" positionY="-18" width="128" height="75"/>
+        <element name="UserStation" positionX="-324" positionY="288" width="128" height="88"/>
+    </elements>
+</model>

@@ -1,0 +1,590 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 48;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		23241A141F584AD800EEAF08 /* Extentions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23241A131F584AD800EEAF08 /* Extentions.swift */; };
+		23304DDE1F5444D000C46B62 /* WeatherDataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23304DDD1F5444D000C46B62 /* WeatherDataModel.swift */; };
+		236F3D9B1F5696ED0022927D /* RearViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 236F3D9A1F5696ED0022927D /* RearViewController.swift */; };
+		236F3DA81F56DF160022927D /* Station+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 236F3DA41F56DF150022927D /* Station+CoreDataClass.swift */; };
+		2371CCBF1F4EE7830054D698 /* Station.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2371CCBE1F4EE7830054D698 /* Station.swift */; };
+		2372571B1F5810C60063269A /* FireBaseHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2372571A1F5810C60063269A /* FireBaseHelper.swift */; };
+		238E59971F4DC79900B87C3A /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 238E59961F4DC62D00B87C3A /* GoogleService-Info.plist */; };
+		23918BA01F595F7000F2417A /* ChartViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23918B9F1F595F7000F2417A /* ChartViewController.swift */; };
+		23918BA21F597AA300F2417A /* InputData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23918BA11F597AA300F2417A /* InputData.swift */; };
+		23918BA41F597D8500F2417A /* InputDataController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23918BA31F597D8500F2417A /* InputDataController.swift */; };
+		239FDB901F53F63700AFF736 /* CoreDataHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 239FDB8F1F53F63700AFF736 /* CoreDataHelper.swift */; };
+		239FDB921F541C7200AFF736 /* FlightData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 239FDB911F541C7200AFF736 /* FlightData.swift */; };
+		23DE49801F626A740038843B /* Station+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23DE497C1F626A720038843B /* Station+CoreDataProperties.swift */; };
+		23DE49811F626A740038843B /* User+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23DE497D1F626A720038843B /* User+CoreDataClass.swift */; };
+		23DE49821F626A740038843B /* User+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23DE497E1F626A730038843B /* User+CoreDataProperties.swift */; };
+		23DE49881F62CC8F0038843B /* ChartPressureViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23DE49871F62CC8F0038843B /* ChartPressureViewController.swift */; };
+		7E1C4B8D1F5FC472000943B8 /* ChartPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E1C4B8C1F5FC472000943B8 /* ChartPageViewController.swift */; };
+		7E1C4B8F1F5FD060000943B8 /* ChartBaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E1C4B8E1F5FD060000943B8 /* ChartBaseViewController.swift */; };
+		7E1C4B911F5FD130000943B8 /* ChartAltitudeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E1C4B901F5FD130000943B8 /* ChartAltitudeViewController.swift */; };
+		7E1C4B931F62EEE9000943B8 /* SFBusyIndicatorUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7E1C4B921F62EEE9000943B8 /* SFBusyIndicatorUI.framework */; };
+		7E1C4B971F62EF0A000943B8 /* SFChartUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7E1C4B961F62EF0A000943B8 /* SFChartUI.framework */; };
+		7EB83F1C1F47504200568CF2 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EB83F1B1F47504200568CF2 /* AppDelegate.swift */; };
+		7EB83F211F47504200568CF2 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7EB83F1F1F47504200568CF2 /* Main.storyboard */; };
+		7EB83F241F47504200568CF2 /* GrawApp.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 7EB83F221F47504200568CF2 /* GrawApp.xcdatamodeld */; };
+		7EB83F261F47504200568CF2 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7EB83F251F47504200568CF2 /* Assets.xcassets */; };
+		7EB83F291F47504200568CF2 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7EB83F271F47504200568CF2 /* LaunchScreen.storyboard */; };
+		7EB83F351F475A1F00568CF2 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EB83F341F475A1F00568CF2 /* LoginViewController.swift */; };
+		7EB83F391F4FEEC000568CF2 /* StationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EB83F381F4FEEC000568CF2 /* StationViewController.swift */; };
+		7EB83F3B1F4FF2E300568CF2 /* AddStationTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EB83F3A1F4FF2E300568CF2 /* AddStationTableViewController.swift */; };
+		FA410619A09B1B7B9F46D07C /* Pods_GrawApp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9426769E4613DA376944FD4C /* Pods_GrawApp.framework */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		23241A131F584AD800EEAF08 /* Extentions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extentions.swift; sourceTree = "<group>"; };
+		23304DDD1F5444D000C46B62 /* WeatherDataModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherDataModel.swift; sourceTree = "<group>"; };
+		236F3D9A1F5696ED0022927D /* RearViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RearViewController.swift; sourceTree = "<group>"; };
+		236F3DA41F56DF150022927D /* Station+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "Station+CoreDataClass.swift"; path = "../Station+CoreDataClass.swift"; sourceTree = "<group>"; };
+		2371CCBE1F4EE7830054D698 /* Station.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Station.swift; sourceTree = SOURCE_ROOT; };
+		2372571A1F5810C60063269A /* FireBaseHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FireBaseHelper.swift; sourceTree = "<group>"; };
+		238E59961F4DC62D00B87C3A /* GoogleService-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		23918B9F1F595F7000F2417A /* ChartViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChartViewController.swift; sourceTree = "<group>"; };
+		23918BA11F597AA300F2417A /* InputData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InputData.swift; sourceTree = "<group>"; };
+		23918BA31F597D8500F2417A /* InputDataController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InputDataController.swift; sourceTree = "<group>"; };
+		239FDB8F1F53F63700AFF736 /* CoreDataHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataHelper.swift; sourceTree = "<group>"; };
+		239FDB911F541C7200AFF736 /* FlightData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlightData.swift; sourceTree = "<group>"; };
+		23DE497C1F626A720038843B /* Station+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Station+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		23DE497D1F626A720038843B /* User+CoreDataClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "User+CoreDataClass.swift"; sourceTree = "<group>"; };
+		23DE497E1F626A730038843B /* User+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "User+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		23DE49831F626C680038843B /* SFChartUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SFChartUI.framework; path = ../../Documents/Syncfusion/15.3.0.26/iOS/Frameworks/SFChartUI.framework; sourceTree = "<group>"; };
+		23DE49851F626C7E0038843B /* SFBusyIndicatorUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SFBusyIndicatorUI.framework; path = ../../Documents/Syncfusion/15.3.0.26/iOS/Frameworks/SFBusyIndicatorUI.framework; sourceTree = "<group>"; };
+		23DE49871F62CC8F0038843B /* ChartPressureViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChartPressureViewController.swift; sourceTree = "<group>"; };
+		639A13AABC8D738785DB2753 /* Pods-GrawApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GrawApp.release.xcconfig"; path = "Pods/Target Support Files/Pods-GrawApp/Pods-GrawApp.release.xcconfig"; sourceTree = "<group>"; };
+		7E1C4B8C1F5FC472000943B8 /* ChartPageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChartPageViewController.swift; sourceTree = "<group>"; };
+		7E1C4B8E1F5FD060000943B8 /* ChartBaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChartBaseViewController.swift; sourceTree = "<group>"; };
+		7E1C4B901F5FD130000943B8 /* ChartAltitudeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChartAltitudeViewController.swift; sourceTree = "<group>"; };
+		7E1C4B921F62EEE9000943B8 /* SFBusyIndicatorUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SFBusyIndicatorUI.framework; path = ../../../Syncfusion/15.2.0.46/iOS/Frameworks/SFBusyIndicatorUI.framework; sourceTree = "<group>"; };
+		7E1C4B941F62EEF7000943B8 /* Frameworks */ = {isa = PBXFileReference; lastKnownFileType = folder; name = Frameworks; path = ../../../Syncfusion/15.2.0.46/iOS/Frameworks; sourceTree = "<group>"; };
+		7E1C4B961F62EF0A000943B8 /* SFChartUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SFChartUI.framework; path = ../../../Syncfusion/15.2.0.46/iOS/Frameworks/SFChartUI.framework; sourceTree = "<group>"; };
+		7E8A18611F59A5590072C8F1 /* SFChartUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SFChartUI.framework; path = ../../../../Syncfusion/15.2.0.46/iOS/Frameworks/SFChartUI.framework; sourceTree = "<group>"; };
+		7E8A18631F59A5620072C8F1 /* SFBusyIndicatorUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SFBusyIndicatorUI.framework; path = ../../../../Syncfusion/15.2.0.46/iOS/Frameworks/SFBusyIndicatorUI.framework; sourceTree = "<group>"; };
+		7EB83F181F47504200568CF2 /* GrawApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GrawApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		7EB83F1B1F47504200568CF2 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		7EB83F201F47504200568CF2 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		7EB83F231F47504200568CF2 /* GrawApp.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = GrawApp.xcdatamodel; sourceTree = "<group>"; };
+		7EB83F251F47504200568CF2 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		7EB83F281F47504200568CF2 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		7EB83F2A1F47504200568CF2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		7EB83F341F475A1F00568CF2 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
+		7EB83F381F4FEEC000568CF2 /* StationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StationViewController.swift; sourceTree = "<group>"; };
+		7EB83F3A1F4FF2E300568CF2 /* AddStationTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddStationTableViewController.swift; sourceTree = "<group>"; };
+		9426769E4613DA376944FD4C /* Pods_GrawApp.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_GrawApp.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		D82B81AB6333AFAAD42DBC17 /* Pods-GrawApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GrawApp.debug.xcconfig"; path = "Pods/Target Support Files/Pods-GrawApp/Pods-GrawApp.debug.xcconfig"; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		7EB83F151F47504200568CF2 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				7E1C4B971F62EF0A000943B8 /* SFChartUI.framework in Frameworks */,
+				7E1C4B931F62EEE9000943B8 /* SFBusyIndicatorUI.framework in Frameworks */,
+				FA410619A09B1B7B9F46D07C /* Pods_GrawApp.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		23B0028C1F5584A1001DD921 /* Supported Files */ = {
+			isa = PBXGroup;
+			children = (
+				23241A131F584AD800EEAF08 /* Extentions.swift */,
+			);
+			path = "Supported Files";
+			sourceTree = "<group>";
+		};
+		53C78A147515F1201E5D1339 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				7E1C4B961F62EF0A000943B8 /* SFChartUI.framework */,
+				7E1C4B941F62EEF7000943B8 /* Frameworks */,
+				23DE49851F626C7E0038843B /* SFBusyIndicatorUI.framework */,
+				7E1C4B921F62EEE9000943B8 /* SFBusyIndicatorUI.framework */,
+				23DE49831F626C680038843B /* SFChartUI.framework */,
+				7E8A18631F59A5620072C8F1 /* SFBusyIndicatorUI.framework */,
+				7E8A18611F59A5590072C8F1 /* SFChartUI.framework */,
+				9426769E4613DA376944FD4C /* Pods_GrawApp.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		7EB83F0F1F47504200568CF2 = {
+			isa = PBXGroup;
+			children = (
+				23B0028C1F5584A1001DD921 /* Supported Files */,
+				7EB83F331F4753D700568CF2 /* Controller */,
+				7EB83F321F4753D100568CF2 /* View */,
+				7EB83F311F4753C900568CF2 /* Model */,
+				7EB83F1A1F47504200568CF2 /* GrawApp */,
+				7EB83F191F47504200568CF2 /* Products */,
+				AC701E97DFEBDFBE5AB2B560 /* Pods */,
+				53C78A147515F1201E5D1339 /* Frameworks */,
+			);
+			sourceTree = "<group>";
+		};
+		7EB83F191F47504200568CF2 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				7EB83F181F47504200568CF2 /* GrawApp.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		7EB83F1A1F47504200568CF2 /* GrawApp */ = {
+			isa = PBXGroup;
+			children = (
+				238E59961F4DC62D00B87C3A /* GoogleService-Info.plist */,
+				7EB83F251F47504200568CF2 /* Assets.xcassets */,
+				7EB83F2A1F47504200568CF2 /* Info.plist */,
+				7EB83F221F47504200568CF2 /* GrawApp.xcdatamodeld */,
+			);
+			path = GrawApp;
+			sourceTree = "<group>";
+		};
+		7EB83F311F4753C900568CF2 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				23DE497C1F626A720038843B /* Station+CoreDataProperties.swift */,
+				23DE497D1F626A720038843B /* User+CoreDataClass.swift */,
+				23DE497E1F626A730038843B /* User+CoreDataProperties.swift */,
+				236F3DA41F56DF150022927D /* Station+CoreDataClass.swift */,
+				23304DDD1F5444D000C46B62 /* WeatherDataModel.swift */,
+				2371CCBE1F4EE7830054D698 /* Station.swift */,
+				239FDB911F541C7200AFF736 /* FlightData.swift */,
+				23918BA11F597AA300F2417A /* InputData.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		7EB83F321F4753D100568CF2 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				7EB83F1F1F47504200568CF2 /* Main.storyboard */,
+				7EB83F271F47504200568CF2 /* LaunchScreen.storyboard */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		7EB83F331F4753D700568CF2 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				7EB83F381F4FEEC000568CF2 /* StationViewController.swift */,
+				7EB83F1B1F47504200568CF2 /* AppDelegate.swift */,
+				7EB83F341F475A1F00568CF2 /* LoginViewController.swift */,
+				7EB83F3A1F4FF2E300568CF2 /* AddStationTableViewController.swift */,
+				239FDB8F1F53F63700AFF736 /* CoreDataHelper.swift */,
+				236F3D9A1F5696ED0022927D /* RearViewController.swift */,
+				2372571A1F5810C60063269A /* FireBaseHelper.swift */,
+				23918B9F1F595F7000F2417A /* ChartViewController.swift */,
+				23918BA31F597D8500F2417A /* InputDataController.swift */,
+				7E1C4B8C1F5FC472000943B8 /* ChartPageViewController.swift */,
+				7E1C4B8E1F5FD060000943B8 /* ChartBaseViewController.swift */,
+				7E1C4B901F5FD130000943B8 /* ChartAltitudeViewController.swift */,
+				23DE49871F62CC8F0038843B /* ChartPressureViewController.swift */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		AC701E97DFEBDFBE5AB2B560 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				D82B81AB6333AFAAD42DBC17 /* Pods-GrawApp.debug.xcconfig */,
+				639A13AABC8D738785DB2753 /* Pods-GrawApp.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		7EB83F171F47504200568CF2 /* GrawApp */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 7EB83F2D1F47504200568CF2 /* Build configuration list for PBXNativeTarget "GrawApp" */;
+			buildPhases = (
+				D8D9884873D0327945CDEB03 /* [CP] Check Pods Manifest.lock */,
+				7EB83F141F47504200568CF2 /* Sources */,
+				7EB83F151F47504200568CF2 /* Frameworks */,
+				7EB83F161F47504200568CF2 /* Resources */,
+				15FB2BF62601DF6E87C37AC8 /* [CP] Embed Pods Frameworks */,
+				826A92E4E427AFE3DD95F360 /* [CP] Copy Pods Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = GrawApp;
+			productName = GrawApp;
+			productReference = 7EB83F181F47504200568CF2 /* GrawApp.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		7EB83F101F47504200568CF2 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 0900;
+				LastUpgradeCheck = 0900;
+				ORGANIZATIONNAME = "Alexander Kotik";
+				TargetAttributes = {
+					7EB83F171F47504200568CF2 = {
+						CreatedOnToolsVersion = 9.0;
+						LastSwiftMigration = 0900;
+					};
+				};
+			};
+			buildConfigurationList = 7EB83F131F47504200568CF2 /* Build configuration list for PBXProject "GrawApp" */;
+			compatibilityVersion = "Xcode 8.0";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 7EB83F0F1F47504200568CF2;
+			productRefGroup = 7EB83F191F47504200568CF2 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				7EB83F171F47504200568CF2 /* GrawApp */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		7EB83F161F47504200568CF2 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				238E59971F4DC79900B87C3A /* GoogleService-Info.plist in Resources */,
+				7EB83F291F47504200568CF2 /* LaunchScreen.storyboard in Resources */,
+				7EB83F261F47504200568CF2 /* Assets.xcassets in Resources */,
+				7EB83F211F47504200568CF2 /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		15FB2BF62601DF6E87C37AC8 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-GrawApp/Pods-GrawApp-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		826A92E4E427AFE3DD95F360 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-GrawApp/Pods-GrawApp-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		D8D9884873D0327945CDEB03 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		7EB83F141F47504200568CF2 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				236F3D9B1F5696ED0022927D /* RearViewController.swift in Sources */,
+				7EB83F351F475A1F00568CF2 /* LoginViewController.swift in Sources */,
+				2371CCBF1F4EE7830054D698 /* Station.swift in Sources */,
+				7EB83F3B1F4FF2E300568CF2 /* AddStationTableViewController.swift in Sources */,
+				7E1C4B8F1F5FD060000943B8 /* ChartBaseViewController.swift in Sources */,
+				7EB83F241F47504200568CF2 /* GrawApp.xcdatamodeld in Sources */,
+				2372571B1F5810C60063269A /* FireBaseHelper.swift in Sources */,
+				23DE49801F626A740038843B /* Station+CoreDataProperties.swift in Sources */,
+				23918BA01F595F7000F2417A /* ChartViewController.swift in Sources */,
+				23DE49821F626A740038843B /* User+CoreDataProperties.swift in Sources */,
+				7EB83F1C1F47504200568CF2 /* AppDelegate.swift in Sources */,
+				23DE49881F62CC8F0038843B /* ChartPressureViewController.swift in Sources */,
+				236F3DA81F56DF160022927D /* Station+CoreDataClass.swift in Sources */,
+				239FDB921F541C7200AFF736 /* FlightData.swift in Sources */,
+				23241A141F584AD800EEAF08 /* Extentions.swift in Sources */,
+				7EB83F391F4FEEC000568CF2 /* StationViewController.swift in Sources */,
+				23304DDE1F5444D000C46B62 /* WeatherDataModel.swift in Sources */,
+				23918BA21F597AA300F2417A /* InputData.swift in Sources */,
+				23DE49811F626A740038843B /* User+CoreDataClass.swift in Sources */,
+				23918BA41F597D8500F2417A /* InputDataController.swift in Sources */,
+				7E1C4B8D1F5FC472000943B8 /* ChartPageViewController.swift in Sources */,
+				239FDB901F53F63700AFF736 /* CoreDataHelper.swift in Sources */,
+				7E1C4B911F5FD130000943B8 /* ChartAltitudeViewController.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		7EB83F1F1F47504200568CF2 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				7EB83F201F47504200568CF2 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		7EB83F271F47504200568CF2 /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				7EB83F281F47504200568CF2 /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		7EB83F2B1F47504200568CF2 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		7EB83F2C1F47504200568CF2 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		7EB83F2E1F47504200568CF2 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = D82B81AB6333AFAAD42DBC17 /* Pods-GrawApp.debug.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
+				DEVELOPMENT_TEAM = WZL3JGC999;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$PODS_CONFIGURATION_BUILD_DIR/Alamofire\"",
+					"\"$PODS_CONFIGURATION_BUILD_DIR/GTMSessionFetcher\"",
+					"\"$PODS_CONFIGURATION_BUILD_DIR/GoogleToolboxForMac\"",
+					"\"$PODS_CONFIGURATION_BUILD_DIR/SWRevealViewController\"",
+					"\"$PODS_CONFIGURATION_BUILD_DIR/SwiftyJSON\"",
+					"\"$PODS_CONFIGURATION_BUILD_DIR/nanopb\"",
+					"\"${PODS_ROOT}/FirebaseAnalytics/Frameworks\"",
+					"\"${PODS_ROOT}/FirebaseAuth/Frameworks\"",
+					"\"${PODS_ROOT}/FirebaseCore/Frameworks\"",
+					"\"${PODS_ROOT}/FirebaseDatabase/Frameworks\"",
+					"\"${PODS_ROOT}/FirebaseInstanceID/Frameworks\"",
+					"\"${PODS_ROOT}/FirebaseStorage/Frameworks\"",
+					/Users/alexander.kotik/Documents/Syncfusion/15.2.0.46/iOS/Frameworks,
+				);
+				INFOPLIST_FILE = GrawApp/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = de.graw.GrawApp;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		7EB83F2F1F47504200568CF2 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 639A13AABC8D738785DB2753 /* Pods-GrawApp.release.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
+				DEVELOPMENT_TEAM = WZL3JGC999;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$PODS_CONFIGURATION_BUILD_DIR/Alamofire\"",
+					"\"$PODS_CONFIGURATION_BUILD_DIR/GTMSessionFetcher\"",
+					"\"$PODS_CONFIGURATION_BUILD_DIR/GoogleToolboxForMac\"",
+					"\"$PODS_CONFIGURATION_BUILD_DIR/SWRevealViewController\"",
+					"\"$PODS_CONFIGURATION_BUILD_DIR/SwiftyJSON\"",
+					"\"$PODS_CONFIGURATION_BUILD_DIR/nanopb\"",
+					"\"${PODS_ROOT}/FirebaseAnalytics/Frameworks\"",
+					"\"${PODS_ROOT}/FirebaseAuth/Frameworks\"",
+					"\"${PODS_ROOT}/FirebaseCore/Frameworks\"",
+					"\"${PODS_ROOT}/FirebaseDatabase/Frameworks\"",
+					"\"${PODS_ROOT}/FirebaseInstanceID/Frameworks\"",
+					"\"${PODS_ROOT}/FirebaseStorage/Frameworks\"",
+					/Users/alexander.kotik/Documents/Syncfusion/15.2.0.46/iOS/Frameworks,
+				);
+				INFOPLIST_FILE = GrawApp/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = de.graw.GrawApp;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "";
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		7EB83F131F47504200568CF2 /* Build configuration list for PBXProject "GrawApp" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				7EB83F2B1F47504200568CF2 /* Debug */,
+				7EB83F2C1F47504200568CF2 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		7EB83F2D1F47504200568CF2 /* Build configuration list for PBXNativeTarget "GrawApp" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				7EB83F2E1F47504200568CF2 /* Debug */,
+				7EB83F2F1F47504200568CF2 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		7EB83F221F47504200568CF2 /* GrawApp.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				7EB83F231F47504200568CF2 /* GrawApp.xcdatamodel */,
+			);
+			currentVersion = 7EB83F231F47504200568CF2 /* GrawApp.xcdatamodel */;
+			path = GrawApp.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
+	};
+	rootObject = 7EB83F101F47504200568CF2 /* Project object */;
+}
