@@ -226,14 +226,19 @@ UITableViewDataSource{
         // Get the new view controller using segue.destinationViewController.
         // Pass the selected object to the new view controller.
         let data:InpuDataController = sender as! InpuDataController
-        if let destinationVc = segue.destination as? UITabBarController {
-            if let nc = destinationVc.viewControllers![0] as? UINavigationController {
-                if let targetController = nc.topViewController as? ChartPageViewController {
+        if let destinationVc = segue.destination as? StationDataTabBarController {
+            destinationVc.dataItems = data
+            if let targetController = destinationVc.viewControllers![0] as? ChartPageViewController {
+                //if let targetController = nc.topViewController as? ChartPageViewController {
                     targetController.dataItems = data
                     let backItem = UIBarButtonItem()
                     backItem.title = "Back"
                     navigationItem.backBarButtonItem = backItem
-                }
+                //}
+            }
+            
+            if let mapViewController = destinationVc.viewControllers![1] as? PathViewController {
+                mapViewController.dataItems = data
             }
             
             

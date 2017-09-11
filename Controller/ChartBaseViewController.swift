@@ -116,7 +116,6 @@ class ChartBaseViewController: UIViewController {
                 if let xValue = item.yValue as? Int {
                     let roundedValue = Int(round(Double(xValue / 1000)) * 1000)
                     if roundedValue % 5000 == 0 && levelValue != roundedValue {
-                        print (levelValue)
                         levelValue = roundedValue
                         return true
                     }
@@ -128,7 +127,6 @@ class ChartBaseViewController: UIViewController {
                 if let xValue = item.yValue as? Int {
                     let roundedValue = Int(round(Double(xValue / 1000)) * 1000)
                     if roundedValue % 5000 == 0 && levelValue != roundedValue {
-                        print (levelValue)
                         levelValue = roundedValue
                         return true
                     }
@@ -141,7 +139,6 @@ class ChartBaseViewController: UIViewController {
                 if let xValue = item.yValue as? Int {
                     let roundedValue = Int(round(Double(xValue / 1000)) * 1000)
                     if roundedValue % 5000 == 0 && levelValue != roundedValue {
-                        print (levelValue)
                         levelValue = roundedValue
                         return true
                     }
@@ -153,7 +150,74 @@ class ChartBaseViewController: UIViewController {
                 if let xValue = item.yValue as? Int {
                     let roundedValue = Int(round(Double(xValue / 1000)) * 1000)
                     if roundedValue % 5000 == 0 && levelValue != roundedValue {
-                        print (levelValue)
+                        levelValue = roundedValue
+                        return true
+                    }
+                }
+                
+                return false
+                
+            })
+        }
+    }
+    
+    internal func getChartDataForPressure() {
+        //self.view.addSubview(chart)
+        if let dataArray = dataItems {
+            for item in dataArray.inputDataArray {
+                temperatureData.append(SFChartDataPoint(xValue: item.temperature, andYValue: item.pressure))
+            }
+            
+            for item in dataArray.inputDataArray {
+                humidityData.append(SFChartDataPoint(xValue: item.dewpoint, andYValue: item.pressure))
+            }
+            
+            for item in dataArray.inputDataArray {
+                pressureData.append(SFChartDataPoint(xValue: item.pressure, andYValue: item.pressure))
+            }
+            
+            for item in dataArray.inputDataArray {
+                windData.append(SFChartDataPoint(xValue: item.windSpeed, andYValue: item.pressure))
+            }
+            var levelValue :Int = 0
+            temperatureReducedData = temperatureData.filter({ (item) -> Bool in
+                if let xValue = item.yValue as? Int {
+                    let roundedValue = Int(round(Double(xValue / 100)) * 100)
+                    if roundedValue % 200 == 0 && levelValue != roundedValue {
+                        levelValue = roundedValue
+                        return true
+                    }
+                }
+                return false
+            })
+            
+            pressureReducedData = pressureData.filter({ (item) -> Bool in
+                if let xValue = item.yValue as? Int {
+                    let roundedValue = Int(round(Double(xValue / 100)) * 100)
+                    if roundedValue % 200 == 0 && levelValue != roundedValue {
+                        levelValue = roundedValue
+                        return true
+                    }
+                }
+                
+                return false
+            })
+            
+            humidityReducedData = humidityData.filter({ (item) -> Bool in
+                if let xValue = item.yValue as? Int {
+                    let roundedValue = Int(round(Double(xValue / 100)) * 100)
+                    if roundedValue % 200 == 0 && levelValue != roundedValue {
+                        levelValue = roundedValue
+                        return true
+                    }
+                }
+                return false
+            })
+            
+            windReducedData = windData.filter({ (item) -> Bool in
+                if let xValue = item.yValue as? Int {
+                    let roundedValue = Int(round(Double(xValue / 100)) * 100)
+                    if roundedValue % 200 == 0 && levelValue != roundedValue {
                         levelValue = roundedValue
                         return true
                     }

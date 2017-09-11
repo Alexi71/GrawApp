@@ -10,7 +10,7 @@ import UIKit
 
 class ChartPageViewController: UIPageViewController {
     var pageControl = UIPageControl()
-    let viewControllerIdentifiers : [String] = ["ProfileTimeChart","ProfileAltitudeChart"]
+    let viewControllerIdentifiers : [String] = ["ProfileTimeChart","ProfileAltitudeChart","PressureTemperatureChart"]
     var dataItems:InpuDataController?
     override func viewDidLoad() {
         super.viewDidLoad()

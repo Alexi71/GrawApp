@@ -296,23 +296,38 @@
             </objects>
             <point key="canvasLocation" x="1692" y="958.4707646176912"/>
         </scene>
-        <!--View Controller-->
+        <!--Path View Controller-->
         <scene sceneID="YvW-R9-Ouk">
             <objects>
-                <viewController id="yTi-hh-i0a" sceneMemberID="viewController">
+                <viewController id="yTi-hh-i0a" customClass="PathViewController" customModule="GrawApp" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="MxD-31-b7c">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="eEN-09-uxV">
+                                <rect key="frame" x="0.0" y="64" width="414" height="623"/>
+                            </mapView>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="eEN-09-uxV" firstAttribute="top" secondItem="Rd5-u0-HUU" secondAttribute="top" id="1Ho-EX-TmW"/>
+                            <constraint firstItem="eEN-09-uxV" firstAttribute="leading" secondItem="Rd5-u0-HUU" secondAttribute="leading" id="Cch-sB-9Nl"/>
+                            <constraint firstItem="eEN-09-uxV" firstAttribute="bottom" secondItem="Rd5-u0-HUU" secondAttribute="bottom" id="EX1-So-J2Y"/>
+                            <constraint firstItem="eEN-09-uxV" firstAttribute="trailing" secondItem="Rd5-u0-HUU" secondAttribute="trailing" id="JiS-O8-0DL"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="Rd5-u0-HUU"/>
                     </view>
+                    <tabBarItem key="tabBarItem" title="" image="004-placeholder" id="FDy-gn-a20"/>
                     <navigationItem key="navigationItem" id="eWH-g3-u6K">
                         <barButtonItem key="backBarButtonItem" title="Back" id="mda-oe-Wun"/>
                     </navigationItem>
+                    <connections>
+                        <outlet property="mapView" destination="eEN-09-uxV" id="SFS-4V-1bK"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="0I0-9X-b7e" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4567" y="1093"/>
+            <point key="canvasLocation" x="4566.666666666667" y="1092.3913043478262"/>
         </scene>
         <!--Chart View Controller-->
         <scene sceneID="iUZ-dE-Xo0">
@@ -350,6 +365,7 @@
         <scene sceneID="GZy-IM-uRP">
             <objects>
                 <pageViewController autoresizesArchivedViewToFullSize="NO" transitionStyle="scroll" navigationOrientation="horizontal" spineLocation="none" id="6SE-V7-a0P" customClass="ChartPageViewController" customModule="GrawApp" customModuleProvider="target" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="" image="002-settings" id="AQH-4Y-uTX"/>
                     <navigationItem key="navigationItem" title="Charts" id="74e-Is-md5"/>
                 </pageViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="c0q-qO-oh7" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -407,23 +423,26 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="0be-C8-mqr"/>
                     </view>
+                    <connections>
+                        <outlet property="chartView" destination="dGo-aN-TSS" id="dXX-y2-St9"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="lj1-XV-uVU" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="5990" y="-452"/>
         </scene>
-        <!--Tab Bar Controller-->
+        <!--Station Data Tab Bar Controller-->
         <scene sceneID="WT3-Y5-ZNy">
             <objects>
-                <tabBarController storyboardIdentifier="tabViewData" id="sm4-4N-eW5" sceneMemberID="viewController">
+                <tabBarController storyboardIdentifier="tabViewData" id="sm4-4N-eW5" customClass="StationDataTabBarController" customModule="GrawApp" customModuleProvider="target" sceneMemberID="viewController">
                     <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="wMb-K6-S5f">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="49"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                     </tabBar>
                     <connections>
-                        <segue destination="HER-D7-IAw" kind="relationship" relationship="viewControllers" id="RLF-hW-0b7"/>
-                        <segue destination="Y79-Tj-pb3" kind="relationship" relationship="viewControllers" id="Zyp-yL-zh9"/>
+                        <segue destination="6SE-V7-a0P" kind="relationship" relationship="viewControllers" id="e3K-6B-1ex"/>
+                        <segue destination="yTi-hh-i0a" kind="relationship" relationship="viewControllers" id="xOe-AI-SRN"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="vzC-VP-kZc" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -609,13 +628,10 @@
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
-                    <connections>
-                        <segue destination="6SE-V7-a0P" kind="relationship" relationship="rootViewController" id="0Ai-4S-TN0"/>
-                    </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="MWT-p5-qdy" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3558.4000000000001" y="420.98950524737637"/>
+            <point key="canvasLocation" x="3297" y="121"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="pvg-Uw-wIu">
@@ -628,13 +644,10 @@
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
-                    <connections>
-                        <segue destination="yTi-hh-i0a" kind="relationship" relationship="rootViewController" id="7eO-Do-evk"/>
-                    </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="HP2-4f-rMF" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3594" y="1107"/>
+            <point key="canvasLocation" x="5901" y="914"/>
         </scene>
     </scenes>
     <resources>

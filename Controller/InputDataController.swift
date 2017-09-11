@@ -31,6 +31,9 @@ class InpuDataController {
                 inputData.windDirection = data[i]["WindDirection"].double!
                 inputData.geopotential = data[i]["Geopotential"].double!
                 inputData.altitude = data[i]["Altitude"].double!
+                inputData.dewpoint = data[i]["DewPoint"].double!
+                inputData.latitude = data[i]["Latitude"].double!
+                inputData.longitude = data[i]["Longitude"].double!
                 inputDataArray.append(inputData)
             }
         }

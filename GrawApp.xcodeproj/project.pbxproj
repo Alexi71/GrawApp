@@ -28,6 +28,8 @@
 		7E1C4B911F5FD130000943B8 /* ChartAltitudeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E1C4B901F5FD130000943B8 /* ChartAltitudeViewController.swift */; };
 		7E1C4B931F62EEE9000943B8 /* SFBusyIndicatorUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7E1C4B921F62EEE9000943B8 /* SFBusyIndicatorUI.framework */; };
 		7E1C4B971F62EF0A000943B8 /* SFChartUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7E1C4B961F62EF0A000943B8 /* SFChartUI.framework */; };
+		7E1C4B991F65461D000943B8 /* PathViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E1C4B981F65461D000943B8 /* PathViewController.swift */; };
+		7E1C4B9B1F6547D6000943B8 /* StationDataTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E1C4B9A1F6547D6000943B8 /* StationDataTabBarController.swift */; };
 		7EB83F1C1F47504200568CF2 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EB83F1B1F47504200568CF2 /* AppDelegate.swift */; };
 		7EB83F211F47504200568CF2 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7EB83F1F1F47504200568CF2 /* Main.storyboard */; };
 		7EB83F241F47504200568CF2 /* GrawApp.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 7EB83F221F47504200568CF2 /* GrawApp.xcdatamodeld */; };
@@ -65,6 +67,8 @@
 		7E1C4B921F62EEE9000943B8 /* SFBusyIndicatorUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SFBusyIndicatorUI.framework; path = ../../../Syncfusion/15.2.0.46/iOS/Frameworks/SFBusyIndicatorUI.framework; sourceTree = "<group>"; };
 		7E1C4B941F62EEF7000943B8 /* Frameworks */ = {isa = PBXFileReference; lastKnownFileType = folder; name = Frameworks; path = ../../../Syncfusion/15.2.0.46/iOS/Frameworks; sourceTree = "<group>"; };
 		7E1C4B961F62EF0A000943B8 /* SFChartUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SFChartUI.framework; path = ../../../Syncfusion/15.2.0.46/iOS/Frameworks/SFChartUI.framework; sourceTree = "<group>"; };
+		7E1C4B981F65461D000943B8 /* PathViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PathViewController.swift; sourceTree = "<group>"; };
+		7E1C4B9A1F6547D6000943B8 /* StationDataTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StationDataTabBarController.swift; sourceTree = "<group>"; };
 		7E8A18611F59A5590072C8F1 /* SFChartUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SFChartUI.framework; path = ../../../../Syncfusion/15.2.0.46/iOS/Frameworks/SFChartUI.framework; sourceTree = "<group>"; };
 		7E8A18631F59A5620072C8F1 /* SFBusyIndicatorUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SFBusyIndicatorUI.framework; path = ../../../../Syncfusion/15.2.0.46/iOS/Frameworks/SFBusyIndicatorUI.framework; sourceTree = "<group>"; };
 		7EB83F181F47504200568CF2 /* GrawApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GrawApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -191,6 +195,8 @@
 				7E1C4B8E1F5FD060000943B8 /* ChartBaseViewController.swift */,
 				7E1C4B901F5FD130000943B8 /* ChartAltitudeViewController.swift */,
 				23DE49871F62CC8F0038843B /* ChartPressureViewController.swift */,
+				7E1C4B981F65461D000943B8 /* PathViewController.swift */,
+				7E1C4B9A1F6547D6000943B8 /* StationDataTabBarController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -336,6 +342,7 @@
 				7EB83F241F47504200568CF2 /* GrawApp.xcdatamodeld in Sources */,
 				2372571B1F5810C60063269A /* FireBaseHelper.swift in Sources */,
 				23DE49801F626A740038843B /* Station+CoreDataProperties.swift in Sources */,
+				7E1C4B9B1F6547D6000943B8 /* StationDataTabBarController.swift in Sources */,
 				23918BA01F595F7000F2417A /* ChartViewController.swift in Sources */,
 				23DE49821F626A740038843B /* User+CoreDataProperties.swift in Sources */,
 				7EB83F1C1F47504200568CF2 /* AppDelegate.swift in Sources */,
@@ -351,6 +358,7 @@
 				7E1C4B8D1F5FC472000943B8 /* ChartPageViewController.swift in Sources */,
 				239FDB901F53F63700AFF736 /* CoreDataHelper.swift in Sources */,
 				7E1C4B911F5FD130000943B8 /* ChartAltitudeViewController.swift in Sources */,
+				7E1C4B991F65461D000943B8 /* PathViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
