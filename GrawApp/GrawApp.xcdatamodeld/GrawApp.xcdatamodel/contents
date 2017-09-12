@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="13233.4" systemVersion="16G29" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
+    <entity name="Ascent" representedClassName=".Ascent" syncable="YES">
+        <attribute name="dataUrl" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="date" optional="YES" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
+        <attribute name="key" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="temp100Url" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="tempEndUrl" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="flightHasData" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Data" inverseName="dataHasFlight" inverseEntity="Data" syncable="YES"/>
+    </entity>
+    <entity name="Data" representedClassName=".Data" syncable="YES">
+        <attribute name="altitude" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="dewpoint" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="geopotential" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="humidity" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="latitude" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="longitude" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="pressure" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="temperature" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="time" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="winddirection" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="windspeed" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES" syncable="YES"/>
+        <relationship name="dataHasFlight" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Ascent" inverseName="flightHasData" inverseEntity="Ascent" syncable="YES"/>
+    </entity>
+    <entity name="Station" representedClassName="Station" syncable="YES">
+        <attribute name="altitude" attributeType="String" syncable="YES"/>
+        <attribute name="city" attributeType="String" syncable="YES"/>
+        <attribute name="country" attributeType="String" syncable="YES"/>
+        <attribute name="id" attributeType="String" syncable="YES"/>
+        <attribute name="isdefault" optional="YES" attributeType="Boolean" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="key" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="latitude" attributeType="String" syncable="YES"/>
+        <attribute name="longitude" attributeType="String" syncable="YES"/>
+        <attribute name="name" attributeType="String" syncable="YES"/>
+        <relationship name="stationUser" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="User" inverseName="userstation" inverseEntity="User" syncable="YES"/>
+    </entity>
+    <entity name="User" representedClassName="User" syncable="YES">
+        <attribute name="id" attributeType="String" syncable="YES"/>
+        <relationship name="userstation" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Station" inverseName="stationUser" inverseEntity="Station" syncable="YES"/>
+    </entity>
+    <entity name="UserStation" representedClassName="UserStation" syncable="YES" codeGenerationType="class">
+        <attribute name="isdefault" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES" syncable="YES"/>
+        <relationship name="station" maxCount="1" deletionRule="Nullify" destinationEntity="Station" syncable="YES"/>
+        <relationship name="user" maxCount="1" deletionRule="Nullify" destinationEntity="User" syncable="YES"/>
+    </entity>
+    <elements>
+        <element name="Ascent" positionX="-126" positionY="126" width="128" height="135"/>
+        <element name="Data" positionX="205" positionY="378" width="128" height="223"/>
+        <element name="Station" positionX="351" positionY="87" width="128" height="195"/>
+        <element name="User" positionX="-63" positionY="-18" width="128" height="75"/>
+        <element name="UserStation" positionX="-324" positionY="288" width="128" height="88"/>
+    </elements>
+</model>
