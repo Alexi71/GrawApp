@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		23241A141F584AD800EEAF08 /* Extentions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23241A131F584AD800EEAF08 /* Extentions.swift */; };
 		23304DDE1F5444D000C46B62 /* WeatherDataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23304DDD1F5444D000C46B62 /* WeatherDataModel.swift */; };
+		235DC8C41F6968CC004BE80A /* RawViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 235DC8C31F6968CC004BE80A /* RawViewController.swift */; };
 		236F3D9B1F5696ED0022927D /* RearViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 236F3D9A1F5696ED0022927D /* RearViewController.swift */; };
 		236F3DA81F56DF160022927D /* Station+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 236F3DA41F56DF150022927D /* Station+CoreDataClass.swift */; };
 		2371CCBF1F4EE7830054D698 /* Station.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2371CCBE1F4EE7830054D698 /* Station.swift */; };
@@ -53,6 +54,7 @@
 /* Begin PBXFileReference section */
 		23241A131F584AD800EEAF08 /* Extentions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extentions.swift; sourceTree = "<group>"; };
 		23304DDD1F5444D000C46B62 /* WeatherDataModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherDataModel.swift; sourceTree = "<group>"; };
+		235DC8C31F6968CC004BE80A /* RawViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RawViewController.swift; sourceTree = "<group>"; };
 		236F3D9A1F5696ED0022927D /* RearViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RearViewController.swift; sourceTree = "<group>"; };
 		236F3DA41F56DF150022927D /* Station+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "Station+CoreDataClass.swift"; path = "../Station+CoreDataClass.swift"; sourceTree = "<group>"; };
 		2371CCBE1F4EE7830054D698 /* Station.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Station.swift; sourceTree = SOURCE_ROOT; };
@@ -228,6 +230,7 @@
 				237390581F67C0E900FEFB27 /* MessagePageViewController.swift */,
 				2373905A1F67C8D000FEFB27 /* MessageBaseViewController.swift */,
 				2373905C1F67DDAA00FEFB27 /* MessageEndViewController.swift */,
+				235DC8C31F6968CC004BE80A /* RawViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -391,6 +394,7 @@
 				23918BA21F597AA300F2417A /* InputData.swift in Sources */,
 				2373905D1F67DDAA00FEFB27 /* MessageEndViewController.swift in Sources */,
 				237390851F68150600FEFB27 /* Data+CoreDataProperties.swift in Sources */,
+				235DC8C41F6968CC004BE80A /* RawViewController.swift in Sources */,
 				23DE49811F626A740038843B /* User+CoreDataClass.swift in Sources */,
 				237390841F68150600FEFB27 /* Data+CoreDataClass.swift in Sources */,
 				23918BA41F597D8500F2417A /* InputDataController.swift in Sources */,

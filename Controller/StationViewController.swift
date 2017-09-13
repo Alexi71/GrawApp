@@ -137,12 +137,54 @@ UITableViewDataSource{
                     if let urlEnd = flights["UrlEnd"] as? String {
                         item.urlEnd = urlEnd
                     }
+                    
+                    if let isRealTimeData = flights["IsRealTimeDataAvailable"] as? Bool {
+                        item.isRealTimeData = isRealTimeData
+                    }
                     self.flights.append(item)
                     
                     self.tableView.reloadData()
                     
                 }
         
+            }
+            
+            Database.database().reference().child("station").child(key).child("flights").observe(.childRemoved) { (snapshot) in
+                let item :FlightData = FlightData()
+                item.key = snapshot.key
+                if let flights = snapshot.value as? NSDictionary {
+                    
+                    if let date = flights["Date"] as?  String {
+                        item.date = date
+                    }
+                    if let time = flights["Time"] as?  String {
+                        item.time = time
+                    }
+                    
+                    if let fileName = flights["FileName"] as?  String {
+                        item.fileName = fileName
+                    }
+                    
+                    if let url = flights["Url"] as?  String {
+                        item.url = url
+                    }
+                    
+                    if let url100 = flights["Url100"] as? String {
+                        item.url100 = url100
+                    }
+                    
+                    if let urlEnd = flights["UrlEnd"] as? String {
+                        item.urlEnd = urlEnd
+                    }
+                    
+                    if let isRealTimeData = flights["IsRealTimeDataAvailable"] as? Bool {
+                        item.isRealTimeData = isRealTimeData
+                    }
+                    self.flights = self.flights.filter{!$0.isRealTimeData}
+                    self.tableView.reloadData()
+                    
+                }
+                
             }
         }
         
@@ -177,7 +219,14 @@ UITableViewDataSource{
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cellId", for: indexPath)
         cell.backgroundColor = UIColor(red: 2/255, green: 64/255, blue: 123/255, alpha: 1.0)
-        cell.textLabel?.textColor = UIColor.white
+        
+        if flights[indexPath.row].isRealTimeData {
+            cell.textLabel?.textColor = UIColor.red
+        }
+        else {
+            cell.textLabel?.textColor = UIColor.white
+        }
+        
         cell.textLabel?.text = flights[indexPath.row].date + " " + flights[indexPath.row].time
       
         /*UITableViewCell.appearance().textLabel?.textColor = UIColor(red: 2/255, green: 64/255, blue: 123/255, alpha: 1.0)
@@ -189,6 +238,15 @@ UITableViewDataSource{
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let flight = flights[indexPath.row]
+        
+        if flight.isRealTimeData {
+            let appDelegate = UIApplication.shared.delegate as! AppDelegate
+            appDelegate.flightData = flight
+            appDelegate.activeStation = activeStation
+            self.performSegue(withIdentifier: "gotoRaw", sender: nil)
+            return
+        }
+        
         busyIndicator.isHidden = false
         var flightFound = CoreDataHelper.isFlightStored(key: flight.key)
         
@@ -262,8 +320,9 @@ UITableViewDataSource{
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         // Get the new view controller using segue.destinationViewController.
         // Pass the selected object to the new view controller.
-        let data:InpuDataController = sender as! InpuDataController
+       
         if let destinationVc = segue.destination as? StationDataTabBarController {
+            let data:InpuDataController = sender as! InpuDataController
             destinationVc.dataItems = data
             if let targetController = destinationVc.viewControllers![0] as? ChartPageViewController {
                 //if let targetController = nc.topViewController as? ChartPageViewController {

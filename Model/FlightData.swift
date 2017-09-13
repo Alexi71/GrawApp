@@ -15,4 +15,5 @@ class FlightData {
     var url = ""
     var url100 = ""
     var urlEnd = ""
+    var isRealTimeData = false
 }
