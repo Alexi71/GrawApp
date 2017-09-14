@@ -100,6 +100,24 @@ class CoreDataHelper {
         return nil
     }
     
+    static func deleteFlightFromCoreData(key : String) {
+        if let context = getContext() {
+            //delete UserStation First!!
+            let fetchRequest = Ascent.fetchRequest() as NSFetchRequest<Ascent>
+            fetchRequest.predicate = NSPredicate(format: "key ==%@", key)
+            do {
+                let ascents = try context.fetch(fetchRequest)
+                for item in ascents {
+                    context.delete(item)
+                }
+                save()
+            }
+            catch {
+                print (error.localizedDescription)
+            }
+        }
+    }
+    
     
     static func updateUserStation(userId: String, stationItem:Station) ->Bool{
         

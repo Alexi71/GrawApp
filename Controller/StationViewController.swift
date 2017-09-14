@@ -37,6 +37,7 @@ UITableViewDataSource{
     let APP_ID = "e72ca729af228beabd5d20e3b7749713"
     let weatherDataModel = WeatherDataModel()
     var busyIndicator:SFBusyIndicator=SFBusyIndicator()
+    var deletedIndexPath:IndexPath?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -236,6 +237,16 @@ UITableViewDataSource{
         
     }
     
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
+        if editingStyle == .delete {
+            deletedIndexPath = indexPath
+            let flight = flights[indexPath.row]
+            let dateString = flight.date + " " + flight.time
+            confirmDelete(flightDate: dateString)
+            
+        }
+    }
+    
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let flight = flights[indexPath.row]
         
@@ -342,6 +353,44 @@ UITableViewDataSource{
         
     }
     
+    //MARK: - Delete Confirmation
+    
+    func confirmDelete(flightDate: String) {
+        let alert = UIAlertController(title: "Delete Flight", message: "Are you sure you want to permanently delete flight from \(flightDate)?", preferredStyle: .actionSheet)
+        
+        let DeleteAction = UIAlertAction(title: "Delete", style: .destructive, handler: handleDeletePlanet)
+        let CancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: cancelDeletePlanet)
+        
+        alert.addAction(DeleteAction)
+        alert.addAction(CancelAction)
+        
+        // Support display in iPad
+        alert.popoverPresentationController?.sourceView = self.view
+        alert.popoverPresentationController?.sourceRect = CGRect(self.view.bounds.size.width / 2.0, self.view.bounds.size.height / 2.0, 1.0, 1.0)
+        
+        self.present(alert, animated: true, completion: nil)
+    }
+    
+    func handleDeletePlanet(alertAction: UIAlertAction!) -> Void {
+        if let indexPath = deletedIndexPath {
+            tableView.beginUpdates()
+            let flight = flights[indexPath.row]
+            CoreDataHelper.deleteFlightFromCoreData(key: flight.key)
+            FireBaseHelper.deleteFlightFromCloud(flightData: flight, stationKey: activeStation!.key)
+            flights.remove(at: indexPath.row)
+            
+            // Note that indexPath is wrapped in an array:  [indexPath]
+            tableView.deleteRows(at: [indexPath], with: .automatic)
+            
+            deletedIndexPath = nil
+            tableView.endUpdates()
+        }
+    }
+    
+    func cancelDeletePlanet(alertAction: UIAlertAction!) {
+        deletedIndexPath = nil
+    }
+    
     
     //MARK: - Networking
     /***************************************************************/
@@ -439,4 +488,10 @@ UITableViewDataSource{
         return activityIndicatorView
     }
 
+}
+
+extension CGRect {
+    init(_ x:CGFloat, _ y:CGFloat, _ w:CGFloat, _ h:CGFloat) {
+        self.init(x:x, y:y, width:w, height:h)
+    }
 }
