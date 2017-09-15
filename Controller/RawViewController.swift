@@ -8,17 +8,32 @@
 
 import UIKit
 import FirebaseDatabase
+import  MapKit
+class RawViewController: UIViewController,MKMapViewDelegate {
 
-class RawViewController: UIViewController {
-
+    @IBOutlet weak var timeLabel: UILabel!
     @IBOutlet weak var pressureValueLabel: UILabel!
     @IBOutlet weak var temperatureValueLabel: UILabel!
     @IBOutlet weak var humidityValueLabel: UILabel!
     @IBOutlet weak var altitudeValueLabel: UILabel!
     @IBOutlet weak var windSpeedValueLabel: UILabel!
     @IBOutlet weak var windDirectionValueLabel: UILabel!
+    
+    @IBOutlet weak var mapView: MKMapView!
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        mapView.delegate = self
+        let locationManager = CLLocationManager()
+        if CLLocationManager.authorizationStatus() == .authorizedWhenInUse {
+            mapView.showsUserLocation = true
+            //addAnnotationOfStation()
+            locationManager.startUpdatingLocation()
+            //addPath()
+        }
+        else {
+            locationManager.requestWhenInUseAuthorization();
+        }
         initDatabase()
         // Do any additional setup after loading the view.
     }
@@ -26,6 +41,17 @@ class RawViewController: UIViewController {
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+    
+    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+        let location = locations[locations.count - 1]
+        if location.horizontalAccuracy > 0 {
+            manager.stopUpdatingLocation()
+            if let center = manager.location?.coordinate {
+                let region = MKCoordinateRegionMakeWithDistance(center, 5000, 5000)
+                mapView.setRegion(region, animated: false)
+            }
+        }
     }
     
     
@@ -77,8 +103,37 @@ class RawViewController: UIViewController {
                     self.altitudeValueLabel.text = nf.string(from: altitude)! + "m"
                 }
                 
+                if let timeStamp = flightdata["TimeStamp"] as? String {
+                    /*let formatter = DateFormatter()
+                    formatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ssZZZZZ"
+                    let myDate  = formatter.date(from: timeStamp)*/
+                    
+                    self.timeLabel.text = "last updated: " + timeStamp
+                }
+                
+                if let latitude = flightdata["Latitude"] as? Double {
+                    if let longitude = flightdata["Longitude"] as? Double {
+                        self.addAnnotation(latitude: latitude, longitude: longitude)
+                    }
+                }
+                
             }
         }
+    }
+    
+    
+    func addAnnotation(latitude : Double, longitude :Double) {
+        self.mapView.annotations.forEach {
+            if !($0 is MKUserLocation) {
+                self.mapView.removeAnnotation($0)
+            }
+        }
+        let anno = MKPointAnnotation()
+        anno.coordinate.latitude = latitude
+        anno.coordinate.longitude = longitude
+        mapView.addAnnotation(anno)
+        let region = MKCoordinateRegionMakeWithDistance(anno.coordinate, 5000, 5000)
+        mapView.setRegion(region, animated: false)
     }
     /*
     // MARK: - Navigation
